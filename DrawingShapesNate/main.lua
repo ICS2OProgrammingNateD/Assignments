@@ -1,7 +1,7 @@
 -- Name: Nate Day
 -- Course: ICS2O
 -- This program displays 4 differnt shapes and says their name underneath.
-
+--Drawing Shapes
 
 -- Hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
@@ -27,5 +27,17 @@ Triangle:setStrokeColor(1, .5, .5)
 -- Set the text location to under the triangle
 TriangleText = display.newText("Triangle", 768, 360, (ComicSansMS), textSize)
 
--- Create new shape
+-- Create new parallelogram variables
+local parallelogram
+local parallelogramText
+local _textSize = 75
 
+-- Sets the location of my new parallelogram and displays it
+parallelogram = display.newPolygon(256, 200, {-20, -20, 60, -20, 20, 40, -60, 40})
+
+-- Fills the parallelogram with a image.
+parallelogram.fill = {type="image", filename="Images/stars.png" }
+
+-- Sets the stroke width and colour of the triangle
+parallelogram.strokeWidth = 15
+parallelogram:setStrokeColor(0, 0, 0)
