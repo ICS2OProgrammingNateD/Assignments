@@ -7,7 +7,7 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 -- Add a backround 
-display.setDefault("background", 24/255, 29/255, 49/255)
+display.setDefault("background", 72/255, 99/255, 160/255)
 
 
 
@@ -48,14 +48,14 @@ parallelogram.fill = {type="image", filename="Images/stars.png" }
 
 -- Sets the stroke width and colour of the parallelogram.
 parallelogram.strokeWidth = 15
-parallelogram:setStrokeColor(0, 0, 0)
+parallelogram:setStrokeColor(158/255, 123/255, 255/255)
 
 -- Sets the text location and displays the text
 parallelogramText = display.newText("Parallelogram", 256, 360, (ComicSansMS), textSize)
 
 
 -- Sets the colour of the text
-parallelogramText:setTextColor(1, 0, 1)
+parallelogramText:setTextColor(75/255, 0/255, 130/255)
 
 
 
@@ -68,10 +68,10 @@ local pentagonText
 local TextSize = 75
 
 -- Sets the location of my new pentagon and displays it
-pentagon = display.newPolygon( 256, 530, {})
+pentagon = display.newPolygon( 256, 530, {120,0, 60,-104, -60,-104, -120,0, 0,104 })
 
 -- Sets the colour of the pentagon
-pentagon:setFillColor(1, 0, 0)
+pentagon:setFillColor(.8, .8, .8)
 
 -- Sets the stoke width and colour of the pentagon
 pentagon.strokeWidth = 15
