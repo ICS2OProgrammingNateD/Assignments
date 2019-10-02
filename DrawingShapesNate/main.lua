@@ -9,6 +9,8 @@ display.setStatusBar(display.HiddenStatusBar)
 -- Add a backround 
 display.setDefault("background", 24/255, 29/255, 49/255)
 
+
+
 -- Create a new triangle variables
 local Triangle
 local TriangleText
@@ -24,20 +26,59 @@ Triangle:setFillColor(1, 0, 0)
 Triangle.strokeWidth = 15
 Triangle:setStrokeColor(1, .5, .5)
 
--- Set the text location to under the triangle
+-- Set the text location and displays under the triangle
 TriangleText = display.newText("Triangle", 768, 360, (ComicSansMS), textSize)
+
+-- Sets the colour of the text
+TriangleText:setTextColor(1, 0, 0)
+
+
 
 -- Create new parallelogram variables
 local parallelogram
 local parallelogramText
-local _textSize = 75
+local textSize = 75
+
 
 -- Sets the location of my new parallelogram and displays it
-parallelogram = display.newPolygon(256, 200, {-20, -20, 60, -20, 20, 40, -60, 40})
+parallelogram = display.newPolygon(256, 200, {-65, -65, 105, -65, 65, 85, -105, 85})
 
 -- Fills the parallelogram with a image.
 parallelogram.fill = {type="image", filename="Images/stars.png" }
 
--- Sets the stroke width and colour of the triangle
+-- Sets the stroke width and colour of the parallelogram.
 parallelogram.strokeWidth = 15
 parallelogram:setStrokeColor(0, 0, 0)
+
+-- Sets the text location and displays the text
+parallelogramText = display.newText("Parallelogram", 256, 360, (ComicSansMS), textSize)
+
+
+-- Sets the colour of the text
+parallelogramText:setTextColor(1, 0, 1)
+
+
+
+
+
+
+-- Create a new pentagon variables
+local pentagon
+local pentagonText
+local TextSize = 75
+
+-- Sets the location of my new pentagon and displays it
+pentagon = display.newPolygon( 256, 530, {})
+
+-- Sets the colour of the pentagon
+pentagon:setFillColor(1, 0, 0)
+
+-- Sets the stoke width and colour of the pentagon
+pentagon.strokeWidth = 15
+pentagon:setStrokeColor(1, 1, .5)
+
+-- Set the text location and displays under the pentagon
+pentagonText = display.newText("pentagon", 256, 680, (ComicSansMS), textSize)
+
+-- Sets the colour of the text
+pentagonText:setTextColor(1, 1, 0)
