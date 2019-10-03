@@ -98,8 +98,14 @@ local textSize = 75
 -- Sets the location of my new hexagon and displays it
 hexagon = display.newPolygon( 768, 530, {115,0, 55,-99, -55,-99, -115,0, -55, 99, 55, 99})
 
--- Sets the colour of the hexagon
-hexagon:setFillColor(0, .5, .5)
+-- Sets the colour of the hexagon to be gradient
+
+local gradient = {
+	type = "gradient", 
+	color1 = {0, .09, .09 }, color2 = {0, .8, .8}, direction = "down"
+}
+
+hexagon:setFillColor(gradient)
 
 -- Sets the stoke width and colour of the hexagon
 hexagon.strokeWidth = 15
