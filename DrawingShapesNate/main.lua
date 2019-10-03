@@ -6,10 +6,10 @@
 -- Hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
--- Add a backround 
-display.setDefault("background", 72/255, 99/255, 160/255)
-
-
+-- Add a backround image 
+local backgroundImage = display.newImageRect("Images/background.png", 1024, 768)
+backgroundImage.x = display.contentCenterX
+backgroundImage.y = display.contentCenterY
 
 -- Create a new triangle variables
 local Triangle
@@ -17,17 +17,17 @@ local TriangleText
 local textSize = 75
 
 -- Sets the location of my new triangle and displays it
-Triangle = display.newPolygon( 768, 200, {0, -120, 120,120, -120, 120,})
+Triangle = display.newPolygon( 768, 200, {0, -115, 115, 115, -115, 115,})
 
 -- Sets the colour of the triangle
-Triangle:setFillColor(1, 0, 0)
+Triangle:setFillColor(.5, 0, 0)
 
 -- Sets the stoke width and colour of the triangle
 Triangle.strokeWidth = 15
 Triangle:setStrokeColor(1, .5, .5)
 
 -- Set the text location and displays under the triangle
-TriangleText = display.newText("Triangle", 768, 360, (ComicSansMS), textSize)
+TriangleText = display.newText("Triangle", 768, 360, (native.systemFontBold), textSize)
 
 -- Sets the colour of the text
 TriangleText:setTextColor(1, 0, 0)
@@ -51,7 +51,7 @@ parallelogram.strokeWidth = 15
 parallelogram:setStrokeColor(158/255, 123/255, 255/255)
 
 -- Sets the text location and displays the text
-parallelogramText = display.newText("Parallelogram", 256, 360, (ComicSansMS), textSize)
+parallelogramText = display.newText("Parallelogram", 256, 360, (native.systemFontBold), textSize)
 
 
 -- Sets the colour of the text
@@ -67,18 +67,46 @@ local pentagon
 local pentagonText
 local TextSize = 75
 
+
+
+
 -- Sets the location of my new pentagon and displays it
-pentagon = display.newPolygon( 256, 530, {120,0, 60,-104, -60,-104, -120,0, 0,104 })
+pentagon = display.newPolygon( 256, 530, {0,0, -97.08,-70.56, -60,-184.7, 60,-184.7,97.08,-70.56 })-- {120,0, 60,-104, -60,-104, -120,0, 0,104 })
 
 -- Sets the colour of the pentagon
-pentagon:setFillColor(.8, .8, .8)
+pentagon:setFillColor(.6, .6, 0)
 
 -- Sets the stoke width and colour of the pentagon
 pentagon.strokeWidth = 15
-pentagon:setStrokeColor(1, 1, .5)
+pentagon:setStrokeColor(1, 1, .3)
 
 -- Set the text location and displays under the pentagon
-pentagonText = display.newText("pentagon", 256, 680, (ComicSansMS), textSize)
+pentagonText = display.newText("Pentagon", 256, 680, (native.systemFontBold), textSize)
 
 -- Sets the colour of the text
-pentagonText:setTextColor(1, 1, 0)
+pentagonText:setTextColor(1, .8, 0)
+
+
+
+
+
+-- Create a new hexagon variables
+local hexagon
+local hexagonText
+local textSize = 75
+
+-- Sets the location of my new hexagon and displays it
+hexagon = display.newPolygon( 768, 530, {115,0, 55,-99, -55,-99, -115,0, -55, 99, 55, 99})
+
+-- Sets the colour of the hexagon
+hexagon:setFillColor(0, .5, .5)
+
+-- Sets the stoke width and colour of the hexagon
+hexagon.strokeWidth = 15
+hexagon:setStrokeColor(0, 1, 1)
+
+-- Set the text location and displays under the hexagon
+hexagonText = display.newText("Hexagon", 768, 680, (native.systemFontBold), textSize)
+
+-- Sets the colour of the text
+hexagonText:setTextColor(0, 0, .5)
