@@ -11,10 +11,18 @@ local backgroundImage = display.newImageRect("Images/background.png", 1024, 768)
 backgroundImage.x = display.contentCenterX
 backgroundImage.y = display.contentCenterY
 
+
+
+
 -- Create a new triangle variables
 local Triangle
 local TriangleText
 local textSize = 75
+local areaText
+local baseOfTriangle = 235
+local heightOfTriangle = 235
+local areaOfTriangle
+local _textSize = 25
 
 -- Sets the location of my new triangle and displays it
 Triangle = display.newPolygon( 768, 200, {0, -115, 115, 115, -115, 115,})
@@ -31,6 +39,17 @@ TriangleText = display.newText("Triangle", 768, 360, (native.systemFontBold), te
 
 -- Sets the colour of the text
 TriangleText:setTextColor(1, 0, 0)
+
+-- calculate the area
+areaOfTriangle = baseOfTriangle * heightOfTriangle/2
+
+areaText = display.newText("The area of this triangle with a base of \n"..
+	baseOfTriangle .. "and a height of " .. heightOfTriangle .. " is " ..
+    areaOfTriangle .. "pixels².", 512, 50, Arial, _textSize)
+
+-- set the area text colour
+areaText:setTextColor(0, 0, 0)
+
 
 
 
@@ -71,7 +90,7 @@ local TextSize = 75
 
 
 -- Sets the location of my new pentagon and displays it
-pentagon = display.newPolygon( 256, 530, {0,0, -97.08,-70.56, -60,-184.7, 60,-184.7,97.08,-70.56 })-- {120,0, 60,-104, -60,-104, -120,0, 0,104 })
+pentagon = display.newPolygon( 256, 530, {0,0, -97.08,-70.56, -60,-184.7, 60,-184.7,97.08,-70.56 })
 
 -- Sets the colour of the pentagon
 pentagon:setFillColor(.6, .6, 0)
