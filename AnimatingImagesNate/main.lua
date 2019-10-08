@@ -17,6 +17,7 @@ backgroundImage.y = display.contentCenterY
 ---------------------------------------------------------------------------------------------------------
 
 local backgroundImage
-local yoshi
-local flower
-local mario
+local marioImage
+local deadpoolImage
+local mushroomImage
+local angryBirdImage
