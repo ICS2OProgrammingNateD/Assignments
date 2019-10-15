@@ -1,5 +1,6 @@
 -- Name: Nate Day
 -- Course: ICS2O
+-- 10/9/2019
 -- This program displays 4 differnt images that do different things
 -- Animating Images
 
@@ -20,9 +21,12 @@ scrollSpeed1 = 4
 scrollSpeed2 = -4 
 scrollSpeed3x = 4
 scrollSpeed3y = 4 
-scrollSpeed4 = -4
+scrollSpeed4x = -4
+scrollSpeed4y = -4
 scrollSpeed5 = 10
-
+fade = -1
+grow = 1
+scale = 1
 
 ---------------------------------------------------------------------------------------------------------
 --LOCAL VARIABLES
@@ -42,6 +46,8 @@ local textBubble
 
 local titleText
 
+local timer
+
 local textSize = 100
 
 local textSize2 = 50
@@ -58,6 +64,7 @@ local gradient2
 
 local gradient3 
 
+
 --------------------------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------------------
@@ -71,7 +78,7 @@ local function MoveMarioImage(event)
 	marioImage.alpha = 1 
 	marioImage.x = marioImage.x + scrollSpeed1
 
-	-- I got this information from stackoverflow how to make multiple objects bounce around in Corona sdk
+	-- I got the base of this information from stackoverflow how to make multiple objects bounce around in Corona sdk
 	-- this makes the image respond to hitting a wall
 if (marioImage.x < 0) then 
   marioImage.x = marioImage.x + 3 scrollSpeed1 = -scrollSpeed1
@@ -81,7 +88,8 @@ if(marioImage.x > display.contentWidth) then
   marioImage.x = marioImage.x - 3 scrollSpeed1 = -scrollSpeed1
 	end
 
--- Flip marioImage when he is in the middle, or x = 1024/2. Set a tolerance so that the middle postion is not skipped by scrollSpeed1 (+-4).
+-- Make it so when the image is in the middle it flips to face the other character, 
+-- be sure the middle position is not skipped or happens twice (he should only flip one time in the window)
 if (marioImage.x > (1024/2 - 2) and marioImage.x < (1024/2 + 2)) then
   
    marioImage:scale(-1, 1)
@@ -107,7 +115,7 @@ local function MoveDeadpoolImage(event)
 	deadpoolImage.x = deadpoolImage.x + scrollSpeed2
 
 
-	-- I got this information from stackoverflow how to make multiple objects bounce around in Corona sdk
+	-- I got the base of this information from stackoverflow how to make multiple objects bounce around in Corona sdk
 	-- this makes the image respond to hitting a wall
 if (deadpoolImage.x < 0) then 
   deadpoolImage.x = deadpoolImage.x + 3 scrollSpeed2 = -scrollSpeed2
@@ -116,7 +124,8 @@ if (deadpoolImage.x < 0) then
 if(deadpoolImage.x > display.contentWidth) then 
   deadpoolImage.x = deadpoolImage.x - 3 scrollSpeed2 = -scrollSpeed2
 	end
--- Flip deadpoolImage when he is in the middle, or x = 1024/2. Set a tolerance so that the middle postion is not skipped by scrollSpeed2 (+-4).
+-- Make it so when the image is in the middle it flips to face the other character, 
+-- be sure the middle position is not skipped or happens twice (he should only flip one time in the window)
 if (deadpoolImage.x > (1024/2 - 2) and deadpoolImage.x < (1024/2 + 2)) then
   
    deadpoolImage:scale(-1, 1)
@@ -133,15 +142,29 @@ end
 -- Function: moves the star to bounce off the walls
 -- Input: This function accepts an event listener
 -- Output: None
--- Discription: moves the star
+-- Discription: moves the star image in the x and y direction within the screen 
 local function MoveStarImage(event)
 -- add the scroll speed to the x-value of the character
 	starImage.alpha = 1 
 	starImage.x = starImage.x + scrollSpeed3x
 	starImage.y = starImage.y + scrollSpeed3y
 
-	 -- I got this information from stackoverflow how to make multiple objects bounce around in Corona sdk
+	-- change the size of the image so that it grows bigger & smaller as it moves. 
+	-- Scale is based on the current size only and is not based on the orignal dimension.
+	-- limits of grow should be equal distance from 1.0, +- 0.0105 seems to work.
+	grow = grow + 0.0001*scale
+	starImage:scale(grow, grow)
+
+	if(grow > 1.0105)then
+			scale = -1
+	end
+	if(grow < 0.9895)then
+			scale = 1
+	end
+
+	 -- I got the base of this information from stackoverflow how to make multiple objects bounce around in Corona sdk
 	 -- this makes the image respond to hitting a wall
+	 -- for the star and cloud it continues to bouces off the walls in different directions
 if (starImage.x < 0) then 
   starImage.x = starImage.x + 3 scrollSpeed3x = -scrollSpeed3x
 	end
@@ -151,11 +174,12 @@ if(starImage.x > display.contentWidth) then
 	end
 if(starImage.y > display.contentHeight - 200 ) then 
   starImage.y = starImage.y - 3 scrollSpeed3y = -scrollSpeed3y
-	end
+  	end
 
 
 if(starImage.y < 0) then 
   starImage.y = starImage.y + 3 scrollSpeed3y = -scrollSpeed3y
+  
 	end
 end
 --------------------------------------------------------------------------------------------------
@@ -164,25 +188,47 @@ end
 -- Function: move cloud image
 -- Input: This function accepts an event listener
 -- Output: None
--- Discription: moves the cloud image
+-- Discription: moves the cloud image in the x and y direction within the screen 
 local function MoveCloudImage(event)
 -- add the scroll speed to the x-value of the character
-	cloudImage.alpha = 1 
-	cloudImage.x = cloudImage.x + scrollSpeed4
-    -- I got this information from stackoverflow how to make multiple objects bounce around in Corona sdk
+	cloudImage.x = cloudImage.x + scrollSpeed4x
+	cloudImage.y = cloudImage.y + scrollSpeed4y
+    -- change the transparency of the image so that it fades in & out as it moves
+	cloudImage.alpha = cloudImage.alpha + 0.015*fade 
+	if(cloudImage.alpha > 0.99)then
+			fade = -1
+	end
+	if(cloudImage.alpha < 0)then
+			fade = 1
+	end
+
+    -- I got the base of this information from stackoverflow how to make multiple objects bounce around in Corona sdk
 	-- this makes the image respond to hitting a wall
+	-- for the star and cloud it continues to bouces off the walls in different directions
 if (cloudImage.x < 0) then 
-   cloudImage.x = cloudImage.x + 3 scrollSpeed4 = -scrollSpeed4
+  cloudImage.x = cloudImage.x + 3 scrollSpeed4x = -scrollSpeed4x
 	end
 
 if(cloudImage.x > display.contentWidth) then 
-  cloudImage.x = cloudImage.x - 3 scrollSpeed4 = -scrollSpeed4
+  cloudImage.x = cloudImage.x - 3 scrollSpeed4x = -scrollSpeed4x
+	end
+if(cloudImage.y > display.contentHeight - 200 ) then 
+  cloudImage.y = cloudImage.y - 3 scrollSpeed4y = -scrollSpeed4y
+ 
+  -- change the transparency of the image so that every time it moves so that it fades in & out
+	fade = 1
 	end
 
+
 if(cloudImage.y < 0) then 
-  scrollSpeed4 = -scrollSpeed4
+  cloudImage.y = cloudImage.y + 3 scrollSpeed4y = -scrollSpeed4y
+  
+  -- change the transparency of the image so that every time it moves so that it fades in & out
+	fade = 1
 	end
 end
+
+ 
 
 -----------------------------------------------------------------------------------------------------------
 
@@ -192,9 +238,9 @@ end
 -- Discription: moves the title text
 local function MoveTextImage(event)
 -- add the scroll speed to the x-value of the character
-	titleText.alpha = 1 
+	titleText.alpha = 1
 	titleText.x = titleText.x + scrollSpeed5
-    -- I got this information from stackoverflow how to make multiple objects bounce around in Corona sdk
+    -- I got the base of this information from stackoverflow how to make multiple objects bounce around in Corona sdk
 	-- this makes the image respond to hitting a wall
 
 if (titleText.x < 0) then 
@@ -294,6 +340,7 @@ cloudImage = display.newImageRect("Images/cloud.png", 150, 150)
 cloudImage.x = 900
 cloudImage.y = 80
 
+
 -- Sets the text location and displays it
 titleText = display.newText("Bouncing Images", display.contentWidth/2, 700, (native.systemFontBold), textSize)
 
@@ -370,4 +417,3 @@ deadpoolImage:addEventListener( "touch", touchDeadpool )
 
 -- calls touch over and over again
 marioImage:addEventListener( "touch", touchMario )
-
