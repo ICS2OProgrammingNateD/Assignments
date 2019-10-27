@@ -8,9 +8,9 @@
 
 -- create variable for sound
 local Sound1 = audio.loadSound("Sounds/Cash Register Cha Ching.mp3")
-local Sound2 = audio.loadSound("Sounds/mp3-sounds.png")
-local Sound3 = audio.loadSound("Sounds/")
-local Sound4 = audio.loadSound("Sounds/")
+local Sound2 = audio.loadSound("Sounds/331912__kevinvg207__wrong-buzzer.wav")
+local Sound3 = audio.loadSound("Sounds/371451__cabled-mess__lose-funny-retro-video-game.wav")
+local Sound4 = audio.loadSound("Sounds/167535__jordanielmills__01-winner.mp3")
 
 
 -- load sound
@@ -89,12 +89,17 @@ local sun3
 local function AskQuestion()
 	-- generate a random number between 1 & 2
 
-	randomOperator = math.random(1, 4)
+	randomOperator = math.random(1, 5)
+
+	-- set random numbers
 
 	randomNumber1 = math.random(1, 20)
 	randomNumber2 = math.random(1, 20)
 	randomNumber3 = math.random(1, 10)
 	randomNumber4 = math.random(1, 10)
+	randomNumber5 = math.random(2, 12)
+
+	--- Sets the random oprators to equal form of math ---
 
 	-- If the Random operator is 1, then do addition
 	if (randomOperator == 1) then
@@ -135,11 +140,16 @@ local function AskQuestion()
 		correctAnswer1 = randomNumber3 * randomNumber4
 		correctAnswer = correctAnswer1 / randomNumber3
 		questionObject.text = correctAnswer1 .. " / " .. randomNumber3 .. " = "
-	
-		
+
+	-- otherwise, if random operator is 5 then do square roots
+	elseif (randomOperator == 5) then
+		tempRandomNumber = randomNumber5 * randomNumber5
+		correctAnswer = tempRandomNumber / randomNumber5
+		questionObject.text = tempRandomNumber .. " √ " .. " = "
 	end
 end
 
+-- hide correct
 local function HideCorrect()
 	correctObject.isVisible = false
 	AskQuestion()
@@ -179,18 +189,21 @@ local function NumericFieldListener( event )
 		   -- clear text 
 		   event.target.text = ""
 		   
+		-- if the users answer and the correct answer are not the same:
 		else
 			incorrectObject.isVisible = true
 			secondsLeft = TOTAL_SECONDS
 			audio.play(Sound2)
 		    correctAnswerObject = display.newText( " The correct answer is " .. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
-		    correctAnswerObject:setTextColor(101/255, 14/255, 189/255 )
+		    correctAnswerObject:setTextColor(0/255, 0/255, 0/255 )
 		   	correctAnswerObject.isVisible = true
 		   	timer.performWithDelay(2000, Hideincorrect) 
 		   	-- take a life if user gets the incorrect answer
 	        lives = lives - 1
             -- upadate it in the display object
 		    livesText.text = "Lives = " .. lives
+		    
+            -- if you lose a life take away a sun
 		    if (lives == 2) then
 				sun3.isVisible = false
 			elseif (lives == 1) then
@@ -207,6 +220,7 @@ local function NumericFieldListener( event )
 			audio.stop()
 			youWin.x = display.contentCenterX
 			youWin.y = display.contentCenterY
+			audio.play(Sound4)
 			numericField.isVisible = false
 
 		end 
@@ -217,6 +231,7 @@ local function NumericFieldListener( event )
 			audio.stop()
 			gameOver.x = display.contentCenterX
 			gameOver.y = display.contentCenterY
+			audio.play(Sound3)
 			numericField.isVisible = false
 
 
@@ -241,11 +256,25 @@ local function UpdateTime()
 		-- update it in display object
 		livesText.text = "Remaining Lives = " .. lives
 
+		-- play incorrect sound
+
+		-- display the correct answer
+		incorrectObject.isVisible = true
+		correctAnswerObject = display.newText( " The correct answer is " .. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
+		correctAnswerObject:setTextColor(0/255, 0/255, 0/255 )
+		correctAnswerObject.isVisible = true
+		timer.performWithDelay(2000, Hideincorrect) 
+
+
+	    -- if there are no more lives end the game
 		if (lives == 0 ) then
 			gameOver = display.newImageRect("Images/gameOver.jpg", 1304, 769)
 			gameOver.x = display.contentCenterX
 			gameOver.y = display.contentCenterY
 			numericField.isVisible = false
+			-- stop music
+			audio.stop()
+			audio.play(Sound3)
 
 			incorrectObject.isVisible = false
 			correctAnswerObject.isVisible = true
@@ -254,14 +283,18 @@ local function UpdateTime()
 		end
 		
 
-
+        -- if you lose a life take away a sun
 		if (lives == 2) then
 			sun3.isVisible = false
+			audio.play(Sound2)
 		elseif (lives == 1) then
 			sun2.isVisible = false
+			audio.play(Sound2)
 		elseif (lives == 0) then
 			sun1.isVisible = false
+			audio.play(Sound2)
 		end
+		-- ask question
 		AskQuestion()
 	end
 end
@@ -318,20 +351,20 @@ numericField:addEventListener( "userInput", NumericFieldListener )
 livesText = display.newText("Remaining Lives = " .. lives, 250, 100, native.systemFontBold, 50)
 livesText:setTextColor(0/255, 0/255, 153/255)
 
--- create sun
+-- create sun 1
 sun1 = display.newImageRect("Images/sun.png", 150, 150)
 sun1.x = display.contentWidth * 7/8
 sun1.y = display.contentHeight * 1/7
 
 
--- create sun
+-- create sun 2
 sun2 = display.newImageRect("Images/sun.png", 150, 150)
 sun2.x = display.contentWidth * 6/8
 sun2.y = display.contentHeight * 1/7
 
 
 
--- create sun
+-- create sun 3
 sun3 = display.newImageRect("Images/sun.png", 150, 150)
 sun3.x = display.contentWidth * 5/8
 sun3.y = display.contentHeight * 1/7
@@ -346,6 +379,8 @@ correctAnswerObject.isVisible = false
 
 -- call the function to ask the question
 AskQuestion()
+
+-- call the function to Start Timer
 StartTimer()
 
  
