@@ -72,8 +72,8 @@ local correctAnswer1
 local tempRandomNumber
 
 local clockText
-local countdownTimer
 local timerBox
+
 
 local lives = 3
 local sun1
@@ -89,7 +89,7 @@ local sun3
 local function AskQuestion()
 	-- generate a random number between 1 & 2
 
-	randomOperator = math.random(1, 5)
+	randomOperator = math.random(1, 6)
 
 	-- set random numbers
 
@@ -98,6 +98,8 @@ local function AskQuestion()
 	randomNumber3 = math.random(1, 10)
 	randomNumber4 = math.random(1, 10)
 	randomNumber5 = math.random(2, 12)
+	randomNumber6 = math.random(1, 03)
+	randomNumber7 = math.random(1, 05)
 
 	--- Sets the random oprators to equal form of math ---
 
@@ -146,6 +148,11 @@ local function AskQuestion()
 		tempRandomNumber = randomNumber5 * randomNumber5
 		correctAnswer = tempRandomNumber / randomNumber5
 		questionObject.text = tempRandomNumber .. " √ " .. " = "
+
+	-- otherwise, if random operator is 5 then do square roots
+	elseif (randomOperator == 6) then
+		correctAnswer = randomNumber7 ^ randomNumber6
+		questionObject.text = randomNumber7 .. " ^ " .. randomNumber6 .. " = "
 	end
 end
 
@@ -216,18 +223,19 @@ local function NumericFieldListener( event )
 		    -- if points reach 5 points display You Win!
 	    if  
 	    	(points == 5)  then
-			youWin = display.newImageRect("Images/youWin.jpg", 1304, 769)
+			youWin = display.newImageRect("Images/youWin.jpg", 1224, 769)
 			audio.stop()
 			youWin.x = display.contentCenterX
 			youWin.y = display.contentCenterY
 			audio.play(Sound4)
 			numericField.isVisible = false
+			timer.performWithDelay(2000, GameOverWin)
 
 		end 
 
 		if    -- If lives = less or equal to zero display Game Over!
 		    (lives == 0) then
-			gameOver = display.newImageRect("Images/gameOver.jpg", 1304, 769)
+			gameOver = display.newImageRect("Images/gameOver.jpg", 1354, 769)
 			audio.stop()
 			gameOver.x = display.contentCenterX
 			gameOver.y = display.contentCenterY
@@ -248,52 +256,45 @@ local function UpdateTime()
 
 	-- display the number of seconds left in the clock object
 	clockText.text = secondsLeft .. ""
-
-	if (secondsLeft == 0 ) then
+	
+	-- if points = 5 then game won
+	if(points == 5) then
+		
+	elseif (secondsLeft == 0 ) then
 		-- reset the number of seconds left
 		secondsLeft = TOTAL_SECONDS
 		lives = lives - 1
 		-- update it in display object
 		livesText.text = "Remaining Lives = " .. lives
 
-		-- play incorrect sound
+		-- if you lose a life take away a sun
+		    if (lives == 2) then
+				sun3.isVisible = false
+				audio.play(Sound2)
+			
+			elseif (lives == 1) then
+				sun2.isVisible = false
+				audio.play(Sound2)
+			
+			elseif (lives == 0) then
+				sun1.isVisible = false
+				audio.play(Sound2)
+				gameOver = display.newImageRect("Images/gameOver.jpg", 1354, 769)
+				audio.stop()
+				gameOver.x = display.contentCenterX
+				gameOver.y = display.contentCenterY
+				audio.play(Sound3)
+				numericField.isVisible = false
+			end
+           
 
 		-- display the correct answer
 		incorrectObject.isVisible = true
 		correctAnswerObject = display.newText( " The correct answer is " .. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
 		correctAnswerObject:setTextColor(0/255, 0/255, 0/255 )
 		correctAnswerObject.isVisible = true
-		timer.performWithDelay(2000, Hideincorrect) 
+		timer.performWithDelay(2000, Hideincorrect)
 
-
-	    -- if there are no more lives end the game
-		if (lives == 0 ) then
-			gameOver = display.newImageRect("Images/gameOver.jpg", 1304, 769)
-			gameOver.x = display.contentCenterX
-			gameOver.y = display.contentCenterY
-			numericField.isVisible = false
-			-- stop music
-			audio.stop()
-			audio.play(Sound3)
-
-			incorrectObject.isVisible = false
-			correctAnswerObject.isVisible = true
-			questionObject.isVisible = false
-			numericField.inputType = false
-		end
-		
-
-        -- if you lose a life take away a sun
-		if (lives == 2) then
-			sun3.isVisible = false
-			audio.play(Sound2)
-		elseif (lives == 1) then
-			sun2.isVisible = false
-			audio.play(Sound2)
-		elseif (lives == 0) then
-			sun1.isVisible = false
-			audio.play(Sound2)
-		end
 		-- ask question
 		AskQuestion()
 	end
@@ -305,6 +306,7 @@ local function StartTimer()
 	-- create a countdown timer that loops infinitely
 	countDownTimer = timer.performWithDelay( 1000, UpdateTime, 0)
 end
+
 
 -------------------------------------------------------------------------------------------------------------
 -- OBJECT CREATION
@@ -382,5 +384,3 @@ AskQuestion()
 
 -- call the function to Start Timer
 StartTimer()
-
- 
