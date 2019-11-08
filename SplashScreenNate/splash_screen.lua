@@ -12,9 +12,6 @@ local composer = require( "composer" )
 -- Name the Scene
 sceneName = "splash_screen"
 
------------------------------------------------------------------------------------------
-
--- Create Scene Object
 local scene = composer.newScene( sceneName )
 
 ----------------------------------------------------------------------------------------
@@ -26,6 +23,9 @@ local companyLogo
 local bkgSound
 local sceneGroup
 local phase
+local paint
+local rect
+
 
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -33,7 +33,7 @@ local phase
 
 -- The function that moves the beetleship on the screen
 local function ImageSpin(event)
-    transition.to(  companyLogo, { rotation = companyLogo.rotation + 14400000000000, iterations = 1, time=9000} )
+    transition.to(  companyLogo, { rotation = companyLogo.rotation + 720, iterations = 1, time=2000} )
 end
 
 
@@ -48,14 +48,25 @@ function scene:create( event )
     -- Creating a group that associates objects with the scene
     sceneGroup = self.view
 
-    companyLogo =  display.newImageRect( "Images/CompanyLogo.png", 800, 800)
+    companyLogo =  display.newImageRect( "Images/CompanyLogoNate@2x.png", 800, 800)
     companyLogo.x = display.contentWidth/2
     companyLogo.y = display.contentHeight/2
     companyLogo.width = 700
-    companyLogo.height = 700
-    bkgSound = audio.loadSound("Sounds/413655__alegemaate__helicopter.wav")
+    companyLogo.height = 650
+    bkgSound = audio.loadSound("Sounds/413655__alegemaate__helicopter.mp3")
+    paint = {
+    type = "gradient",
+    color1 = { 204/255, 255/255, 204/255 },
+    color2 = { 0, 102/255, 102/255 },
+    direction = "up"
+    }
+
+    rect = display.newRect( display.contentCenterX, display.contentCenterY, 1024, 768 )
+    rect.fill = paint
+
 
     sceneGroup:insert( companyLogo )
+    rect:toBack()
 
 end -- function scene:create( event )
 
