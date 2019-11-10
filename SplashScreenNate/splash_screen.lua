@@ -66,10 +66,12 @@ physics.start()
 local function BuildingGames()
     -- creating BuildingGames text 
     buildingGamesText = display.newText("BUILDING GAMES", 512, 100, native.systemFontBold, 110)
+    buildingGamesText.width = 1000
+    buildingGamesText.height = 100
     -- Sets the colour of the text to be gradient 
     gradient1 = {
     type = "gradient1", 
-    color1 = {0/255, 255/255, 255/255 }, color2 = {0/255, 0/255, 104/255}, direction = "down"
+    color1 = {153/255, 255/255, 255/255 }, color2 = {0/255, 51/255, 51/255}, direction = "down"
 }
 
     buildingGamesText:setFillColor(gradient1)
@@ -77,9 +79,9 @@ local function BuildingGames()
 
 
     -- add to physics
-    physics.addBody(buildingGamesText, {density = .6, friction = 0.5, bounce = 0.62})
+    physics.addBody(buildingGamesText, {density = .6, friction = 0.5, bounce = 0.3})
 
-    timer.performWithDelay(2000, BoomSound)
+    timer.performWithDelay(1962, BoomSound)
 end
 
 
@@ -117,7 +119,7 @@ Runtime:addEventListener("enterFrame", MoveShip)
 -- Moveship will be called over and over again
 Runtime:addEventListener("enterFrame", _MoveShip)
 
-timer.performWithDelay( 1700, BuildingGames)
+timer.performWithDelay( 1962, BuildingGames)
 
 
 -----------------------------------------------------------------------------------------
