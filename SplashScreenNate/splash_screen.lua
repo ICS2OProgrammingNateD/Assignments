@@ -79,7 +79,7 @@ local function BuildingGames()
 
 
     -- add to physics
-    physics.addBody(buildingGamesText, {density = .6, friction = 0.5, bounce = 0.3})
+    physics.addBody(buildingGamesText, {density = .6, friction = 0.5, bounce = 0.63})
 
     timer.performWithDelay(1962, BoomSound)
 end
