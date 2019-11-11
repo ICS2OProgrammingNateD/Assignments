@@ -19,7 +19,12 @@ sceneName = "splash_screen"
 
 local scene = composer.newScene( sceneName )
 
+------------------------------------------------------------------------------------------
+-- Sounds
+---------------------------------------------------------------------------------------------
+-- play sound 
 
+local bkgSound = audio.loadSound("Sounds/413655__alegemaate__helicopter.mp3")
 
 local Sound1 = audio.loadSound("Sounds/401630__studiomandragore__booms.wav")
 
@@ -29,7 +34,6 @@ local Sound1 = audio.loadSound("Sounds/401630__studiomandragore__booms.wav")
  
 -- The local variables for this scene
 local companyLogo 
-local bkgSound
 local sceneGroup
 
 local phase
@@ -60,13 +64,11 @@ end
 -- create boom sound function
 local function BoomSound(event)
     audio.play(Sound1)
-   -- timer.performWithDelay(1962)
 end
 
 -- The function that moves the companyLogo on the screen
 local function ImageSpin(event)
-    transition.to(  rearPropeller, { rotation = rearPropeller.rotation + 5400, iterations = 1, time = 1962 } )
-    timer.performWithDelay(4000, BoomSound)
+    transition.to(  rearPropeller, { rotation = rearPropeller.rotation + 5000, iterations = 1, time = 1962 } )
 end
 
 
@@ -74,7 +76,7 @@ end
 local function BuildingGames(event)
 
     -- add to physics
-    physics.addBody(buildingGamesText, {density = .6, friction = 0.5, bounce = .470})
+    physics.addBody(buildingGamesText, {density = .6, friction = 0.5, bounce = .630})
 
    -- timer.performWithDelay(1962, BoomSound)
 end
@@ -146,8 +148,7 @@ function scene:create( event )
     companyLogo.width = 400
     companyLogo.height = 350
 
-    -- play sound 
-    bkgSound = audio.loadSound("Sounds/413655__alegemaate__helicopter.mp3")
+    
 
     -- make the background colour gradient
     paint = {
@@ -222,6 +223,7 @@ function scene:show( event )
     elseif ( phase == "did" ) then
         -- start the splash screen music
         bkgMusicChannel = audio.play(bkgSound)
+        timer.performWithDelay(3600, BoomSound)
 
         ImageSpin()
 
@@ -231,6 +233,38 @@ function scene:show( event )
 
 end --function scene:show( event )
 
+------------------------------------------------------------------------------------------------------
+
+-- The function called when the scene is issued to leave the screen
+function scene:hide( event )
+
+    -- Creating a group that associates objects with the scene
+    sceneGroup = self.view
+    phase = event.phase
+
+    -----------------------------------------------------------------------------------------
+
+    if ( phase == "will" ) then
+
+
+        -- Called when the scene is on screen (but is about to go off screen).
+        -- Insert code here to "pause" the scene.
+        -- Example: stop timers, stop animation, stop audio, etc.
+        
+        -- remove the listeners when leaving the scene
+
+    -----------------------------------------------------------------------------------------
+
+    elseif ( phase == "did" ) then
+
+        buildingGamesText.isVisible = false
+        distantMountains.isVisible = false
+        cloudImage.isVisible = false
+        display.setDefault("background", 0/255, 0/255, 0/255)
+
+    end
+
+end
 
 -----------------------------------------------------------------------------------------
 

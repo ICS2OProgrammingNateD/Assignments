@@ -10,7 +10,7 @@
 local composer = require( "composer" )
 
 -- Name the Scene
-sceneName = "splash_screen"
+sceneName = "main_menu"
 
 local scene = composer.newScene( sceneName )
 
