@@ -46,11 +46,13 @@ local buildingGamesText
 -- create boom sound function
 local function BoomSound(event)
     audio.play(Sound1)
+   -- timer.performWithDelay(1962)
 end
 
 -- The function that moves the companyLogo on the screen
 local function ImageSpin(event)
-    transition.to(  rearPropeller, { rotation = rearPropeller.rotation + 5400, iterations = 1, time = 2000 } )
+    transition.to(  rearPropeller, { rotation = rearPropeller.rotation + 5400, iterations = 1, time = 1962 } )
+    timer.performWithDelay(4000, BoomSound)
 end
 
 
@@ -63,27 +65,23 @@ physics.start()
 
 
 -- create text
-local function BuildingGames()
-    -- creating BuildingGames text 
-    buildingGamesText = display.newText("BUILDING GAMES", 512, 100, native.systemFontBold, 110)
-    buildingGamesText.width = 1000
-    buildingGamesText.height = 100
-    -- Sets the colour of the text to be gradient 
-    gradient1 = {
-    type = "gradient1", 
-    color1 = {153/255, 255/255, 255/255 }, color2 = {0/255, 51/255, 51/255}, direction = "down"
-}
-
-    buildingGamesText:setFillColor(gradient1)
-
-
+local function BuildingGames(event)
 
     -- add to physics
-    physics.addBody(buildingGamesText, {density = .6, friction = 0.5, bounce = 0.63})
+    physics.addBody(buildingGamesText, {density = .6, friction = 0.5, bounce = .470})
 
-    timer.performWithDelay(1962, BoomSound)
+   -- timer.performWithDelay(1962, BoomSound)
 end
 
+
+
+
+-- make a function that fades in building GAMES
+local function FadeText(event)
+    
+    -- change the transparency of the ship every time it moves so that it fades in
+    buildingGamesText.alpha = buildingGamesText.alpha + 0.01
+end
 
 -- Function: Moveship
 -- Input: this function accepts an event listener
@@ -95,6 +93,8 @@ local function MoveShip(event)
     companyLogo.y = companyLogo.y + scrollXSpeed
 -- change the transparency of the ship every time it moves so that it fades out
     companyLogo.alpha = companyLogo.alpha - 0.01
+    timer.performWithDelay( 1962, BuildingGames)
+
 end
 
 
@@ -119,7 +119,8 @@ Runtime:addEventListener("enterFrame", MoveShip)
 -- Moveship will be called over and over again
 Runtime:addEventListener("enterFrame", _MoveShip)
 
-timer.performWithDelay( 1962, BuildingGames)
+-- fade text will be called over and over again
+Runtime:addEventListener("enterFrame", FadeText)
 
 
 -----------------------------------------------------------------------------------------
@@ -173,8 +174,23 @@ function scene:create( event )
     distantMountains.width = 1024
     distantMountains.height = 100
 
+    -- creating BuildingGames text 
+    buildingGamesText = display.newText("BUILDING GAMES", 512, 100, native.systemFontBold, 110)
+    buildingGamesText.width = 1000
+    buildingGamesText.height = 100
+    buildingGamesText.alpha = 0
+   
+
+    -- Sets the colour of the text to be gradient 
+    gradient1 = {
+    type = "gradient1", 
+    color1 = {153/255, 255/255, 255/255 }, color2 = {0/255, 51/255, 51/255}, direction = "down"
+}
+
+    buildingGamesText:setFillColor(gradient1)
+
     -- add to physics
-    physics.addBody(distantMountains, "static", {friction = 0.5, bounce = 0.5})
+    physics.addBody(distantMountains, "static", {friction = 0.5})
 
 end -- function scene:create( event )
 
