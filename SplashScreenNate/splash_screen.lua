@@ -8,11 +8,18 @@
 
 -- Use Composer Library
 local composer = require( "composer" )
+-- require physics 
+local physics = require("physics")
+
+-- start physics
+physics.start()
 
 -- Name the Scene
 sceneName = "splash_screen"
 
 local scene = composer.newScene( sceneName )
+
+
 
 local Sound1 = audio.loadSound("Sounds/401630__studiomandragore__booms.wav")
 
@@ -43,6 +50,13 @@ local buildingGamesText
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
 
+
+-- The function that will go to the main menu 
+local function gotoMainMenu()
+    composer.gotoScene( "main_menu" )
+end
+
+
 -- create boom sound function
 local function BoomSound(event)
     audio.play(Sound1)
@@ -54,14 +68,6 @@ local function ImageSpin(event)
     transition.to(  rearPropeller, { rotation = rearPropeller.rotation + 5400, iterations = 1, time = 1962 } )
     timer.performWithDelay(4000, BoomSound)
 end
-
-
--- require physics 
-physics = require("physics")
-
-
--- start physics
-physics.start()
 
 
 -- create text
@@ -218,6 +224,9 @@ function scene:show( event )
         bkgMusicChannel = audio.play(bkgSound)
 
         ImageSpin()
+
+        -- Go to the main menu screen after the given time.
+        timer.performWithDelay ( 8000, gotoMainMenu)   
     end
 
 end --function scene:show( event )
