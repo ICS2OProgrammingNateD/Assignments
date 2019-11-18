@@ -130,8 +130,8 @@ function scene:create( event )
             y = display.contentHeight*5/8,
 
             -- Insert the images here
-            defaultFile = "Images/Credits Button Unpressed.png",
-            overFile = "Images/Credits Button Pressed.png",
+            defaultFile = "Images/CreditsButtonUnpressedNate@2x.png",
+            overFile = "Images/CreditsButtonPressedNate@2x.png",
 
             -- When the button is released, call the Credits transition function
             onRelease = CreditsTransition
@@ -147,8 +147,8 @@ function scene:create( event )
             y = display.contentHeight*7/8,
 
             -- Insert the images here
-            defaultFile = "Images/Instructions Button Unpressed.png",
-            overFile = "Images/Instructions Button Pressed.png",
+            defaultFile = "Images/InstructionsButtonUnpressedNate@2x.png",
+            overFile = "Images/InstructionsButtonPressedNate@2x.png",
 
             -- When the button is released, call the Credits transition function
             onRelease = InstructionsTransition
