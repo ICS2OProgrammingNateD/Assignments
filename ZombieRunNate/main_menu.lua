@@ -1,13 +1,4 @@
------------------------------------------------------------------------------------------
--- intro_screen.lua
--- Created by: Nate Day
--- Date: Nov. 7th, 2019
--- Description: This is the main menu of the game. It displays the app logo and the 
--- company logo with some sort of animation...
------------------------------------------------------------------------------------------
 
------------------------------------------------------------------------------------------
---
 -- main_menu.lua
 -- Created by: Nate Day
 -- Date: Nov. 16, 2019
@@ -36,6 +27,15 @@ sceneName = "main_menu"
 -- Creating Scene Object
 local scene = composer.newScene( sceneName )
 
+-- load sound
+audio.loadStream()
+
+-- load sound
+audio.loadSound()
+
+-- add background music
+backgroundMusic = audio.loadStream("Sounds/bkgMusic.mp3")
+
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
@@ -43,8 +43,19 @@ local scene = composer.newScene( sceneName )
 local bkg_image
 local playButton
 local creditsButton
+local mouseClick
+
 local bkgMusic
 local bkgMusicChannel
+
+local muteButton
+local unmuteButton
+
+-----------------------------------------------------------------------------------------
+-- GLOBAL VARIABLES
+-----------------------------------------------------------------------------------------
+-- create global VARIABLES
+soundOn = true
 
 
 -----------------------------------------------------------------------------------------
@@ -69,7 +80,6 @@ local function InstructionsTransition( )
     composer.gotoScene( "instructions_screen", {effect = "slideUp", time = 1000})
 end 
 
-
 -----------------------------------------------------------------------------------------
 
 -- Creating Transition Function to Credits Page
@@ -79,7 +89,38 @@ local function Music( )
     --bkgMusicChannel = audio.play (bkgMusic, {channel = 1, loops=-1} )
 end 
 
---timer.performWithDelay( 3000, Music )
+local function Mute(touch)
+    if (touch.phase == "ended") then
+        -- pause the sound
+        bkgMusicChannel = audio.pause(bkgMusic)
+        -- set sound on to be false
+        soundOn = false
+        -- hide the mute button
+        muteButton.isVisible = false
+        -- make the unmuteButton Visible
+        unmuteButton.isVisible = true
+    end
+end
+
+local function Unmute(touch)
+    if (touch.phase == "ended") then
+        -- play the sound
+        bkgMusicChannel = audio.resume(bkgMusic)
+        -- set sound on to be false
+        soundOn = true
+        -- hide the mute button
+        muteButton.isVisible = true
+        -- make the unmuteButton Visible
+        unmuteButton.isVisible = false
+    end
+end
+
+local function click( touch )
+    if (touch.phase == "began") then
+        audio.play(mouseClick)
+    end
+end
+
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -118,8 +159,8 @@ function scene:create( event )
     playButton = widget.newButton( 
         {   
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*8/16,
-            y = display.contentHeight*2.4/8,
+            x = display.contentWidth*14/16,
+            y = display.contentHeight*4/8,
             
             -- Setting Dimensions
             width = 200,
@@ -130,7 +171,8 @@ function scene:create( event )
             overFile = "Images/PlayButtonPressedHunterC@2x.png", 
 
             -- When the button is released, call the Level1 screen transition function
-            onRelease = Level1ScreenTransition          
+            onRelease = Level1ScreenTransition 
+            
         } )
 
     -----------------------------------------------------------------------------------------
@@ -176,12 +218,28 @@ function scene:create( event )
         } ) 
 
     -----------------------------------------------------------------------------------------
+    -- create mute button
+    muteButton = display.newImageRect("Images/MuteButton@2x.png", 150, 150)
+    muteButton.x = display.contentWidth*2/16
+    muteButton.y = display.contentHeight*4/8
+    muteButton.isVisible = true
+
+     -- create mute button
+    unmuteButton = display.newImageRect("Images/UnmuteButton@2x.png", 150, 150)
+    unmuteButton.x = display.contentWidth*2/16
+    unmuteButton.y = display.contentHeight*4/8
+    unmuteButton.isVisible = false
+
+    -- add mouse click sound
+    mouseClick = audio.loadSound("Sounds/patsound.mp3")
 
 
     -- Associating button widgets with this scene
     sceneGroup:insert( playButton )
     sceneGroup:insert( creditsButton )
     sceneGroup:insert( instructionsButton )
+    sceneGroup:insert( muteButton )
+    sceneGroup:insert( unmuteButton )
 
 end -- function scene:create( event )   
 
@@ -210,7 +268,10 @@ function scene:show( event )
     -- Insert code here to make the scene come alive.
     -- Example: start timers, begin animation, play audio, etc.
     elseif ( phase == "did" ) then       
-        
+        bkgMusicChannel = audio.play(backgroundMusic, {loops = -1})
+        muteButton:addEventListener("touch", Mute)
+        unmuteButton:addEventListener("touch", Unmute)
+        Runtime:addEventListener("touch", click)
 
     end
 
@@ -234,11 +295,15 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-
+        audio.stop(bkgMusicChannel)
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
+        muteButton:removeEventListener("touch", Mute)
+        unmuteButton:removeEventListener("touch", Unmute)
+        Runtime:removeEventListener("touch", click)
+
     end
 
 end -- function scene:hide( event )
