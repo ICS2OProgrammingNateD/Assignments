@@ -60,7 +60,7 @@ end
 
 -- Creating Transition to Level1 Screen
 local function Level1ScreenTransition( )
-    composer.gotoScene( "level1_splash_screen", {effect = "fade", time = 2000})
+    composer.gotoScene( "level1_screen", {effect = "fade", time = 2000})
 end    
 -----------------------------------------------------------------------------------------
 
@@ -75,11 +75,11 @@ end
 -- Creating Transition Function to Credits Page
 local function Music( )       
       -- creating music
-      bkgMusic = audio.loadStream("Sounds/bkg_music.mp3")
-    bkgMusicChannel = audio.play (bkgMusic, {channel = 1, loops=-1} )
+      --bkgMusic = audio.loadStream("Sounds/bkg_music.mp3")
+    --bkgMusicChannel = audio.play (bkgMusic, {channel = 1, loops=-1} )
 end 
 
-timer.performWithDelay( 3000, Music )
+--timer.performWithDelay( 3000, Music )
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -95,13 +95,14 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImage("Images/main_menu.png")
+    bkg_image = display.newImage("Images/MainMenuNate@2x.png")
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
-
-
+    
+   
+    
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg_image )
 
@@ -117,12 +118,16 @@ function scene:create( event )
     playButton = widget.newButton( 
         {   
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*3/16,
-            y = display.contentHeight*3/8,
+            x = display.contentWidth*8/16,
+            y = display.contentHeight*2.4/8,
+            
+            -- Setting Dimensions
+            width = 200,
+            height = 100,
 
             -- Insert the images here
             defaultFile = "Images/PlayButtonUnpressedHunterC@2x.png",
-            overFile = "Images/PlayButtonPressedHunterC@2x.png",
+            overFile = "Images/PlayButtonPressedHunterC@2x.png", 
 
             -- When the button is released, call the Level1 screen transition function
             onRelease = Level1ScreenTransition          
@@ -134,12 +139,16 @@ function scene:create( event )
     creditsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*3/16,
-            y = display.contentHeight*5/8,
+            x = display.contentWidth*14/16,
+            y = display.contentHeight*6.5/8,
+
+            -- Setting Dimensions
+            width = 200,
+            height = 120,
 
             -- Insert the images here
-            defaultFile = "Images/CreditsButtonUnpressedNate@2x.png",
-            overFile = "Images/CreditsButtonPressedNate@2x.png",
+            defaultFile = "Images/CreditsButtonUnpressedNate@2x.png", 
+            overFile = "Images/CreditsButtonPressedNate@2x.png", 
 
             -- When the button is released, call the Credits transition function
             onRelease = CreditsTransition
@@ -151,12 +160,16 @@ function scene:create( event )
     instructionsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*3/16,
-            y = display.contentHeight*7/8,
+            x = display.contentWidth*2/16,
+            y = display.contentHeight*6.5/8,
+
+            -- Setting Dimensions
+            width = 200,
+            height = 120,
 
             -- Insert the images here
             defaultFile = "Images/InstructionsButtonUnpressedNate@2x.png",
-            overFile = "Images/InstructionsButtonPressedNate@2x.png",
+            overFile = "Images/InstructionsButtonPressedNate@2x.png", 
 
             -- When the button is released, call the Credits transition function
             onRelease = InstructionsTransition
