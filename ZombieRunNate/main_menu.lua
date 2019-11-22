@@ -136,7 +136,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImage("Images/MainMenuNate@2x.png")
+    bkg_image = display.newImage("Images/MainMenuNate.png")
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -167,8 +167,8 @@ function scene:create( event )
             height = 100,
 
             -- Insert the images here
-            defaultFile = "Images/PlayButtonUnpressedHunterC@2x.png",
-            overFile = "Images/PlayButtonPressedHunterC@2x.png", 
+            defaultFile = "Images/PlayButtonUnpressedHunterC.png",
+            overFile = "Images/PlayButtonPressedHunterC.png", 
 
             -- When the button is released, call the Level1 screen transition function
             onRelease = Level1ScreenTransition 
@@ -189,8 +189,8 @@ function scene:create( event )
             height = 120,
 
             -- Insert the images here
-            defaultFile = "Images/CreditsButtonUnpressedNate@2x.png", 
-            overFile = "Images/CreditsButtonPressedNate@2x.png", 
+            defaultFile = "Images/CreditsButtonUnpressedNate.png", 
+            overFile = "Images/CreditsButtonPressedNate.png", 
 
             -- When the button is released, call the Credits transition function
             onRelease = CreditsTransition
@@ -210,8 +210,8 @@ function scene:create( event )
             height = 120,
 
             -- Insert the images here
-            defaultFile = "Images/InstructionsButtonUnpressedNate@2x.png",
-            overFile = "Images/InstructionsButtonPressedNate@2x.png", 
+            defaultFile = "Images/InstructionsButtonUnpressedNate.png",
+            overFile = "Images/InstructionsButtonPressedNate.png", 
 
             -- When the button is released, call the Credits transition function
             onRelease = InstructionsTransition
@@ -219,13 +219,13 @@ function scene:create( event )
 
     -----------------------------------------------------------------------------------------
     -- create mute button
-    muteButton = display.newImageRect("Images/MuteButton@2x.png", 150, 150)
+    muteButton = display.newImageRect("Images/MuteButtonUnpressedHunterC.png", 150, 150)
     muteButton.x = display.contentWidth*2/16
     muteButton.y = display.contentHeight*4/8
     muteButton.isVisible = true
 
      -- create mute button
-    unmuteButton = display.newImageRect("Images/UnmuteButton@2x.png", 150, 150)
+    unmuteButton = display.newImageRect("Images/MuteButtonPressedHunterC.png", 150, 150)
     unmuteButton.x = display.contentWidth*2/16
     unmuteButton.y = display.contentHeight*4/8
     unmuteButton.isVisible = false

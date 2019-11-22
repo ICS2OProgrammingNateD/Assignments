@@ -53,7 +53,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImageRect("Images/InstructionsScreenNate@2x.png", display.contentWidth, display.contentHeight)
+    bkg_image = display.newImageRect("Images/InstructionsScreenNate.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -81,8 +81,8 @@ function scene:create( event )
         height = 120,
 
         -- Setting Visual Properties
-        defaultFile = "Images/BackButtonUnpressedNate@2x.png",
-        overFile = "Images/BackButtonPressedNate@2x.png",
+        defaultFile = "Images/BackButtonUnpressedNate.png",
+        overFile = "Images/BackButtonPressedNate.png",
 
         -- Setting Functional Properties
         onRelease = BackTransition
