@@ -153,8 +153,8 @@ local function ReplaceCharacter()
     character = display.newImageRect("Images/Character1@2x.png", 100, 150)
     character.x = display.contentWidth * 0.5 / 8
     character.y = display.contentHeight  * 0.1 / 3
-    character.width = 90
-    character.height = 150
+    character.width = 30
+    character.height = 60
     character.myName = "Bob"
 
     -- intialize horizontal movement of character
@@ -393,7 +393,7 @@ function scene:create( event )
     sceneGroup:insert( bkg_image )    
     
     -- Insert the platforms
-    platform1 = display.newImageRect("Images//Level1PlatformHunter.png", 250, 50)
+    platform1 = display.newImageRect("Images//Level1PlatformHunter.png", 340, 50)
     platform1.x = display.contentWidth * 1 / 8
     platform1.y = display.contentHeight * 1.6 / 4
         
@@ -406,53 +406,53 @@ function scene:create( event )
     sceneGroup:insert( platform2 )
 
     platform3 = display.newImageRect("Images//Level1PlatformHunter.png", 180, 50)
-    platform3.x = display.contentWidth *3 / 5
-    platform3.y = display.contentHeight * 3.5 / 5
+    platform3.x = display.contentWidth *1.8 / 5
+    platform3.y = display.contentHeight * 3.12 / 5
         
     sceneGroup:insert( platform3 )
 
-    platform4 = display.newImageRect("Images//Level1PlatformHunter.png", 180, 50)
+    platform4 = display.newImageRect("Images//Level1PlatformHunter.png", 100, 50)
     platform4.x = display.contentWidth *4.7 / 5
     platform4.y = display.contentHeight * 1.3 / 5
         
     sceneGroup:insert( platform4 )
 
-    zombie1 = display.newImageRect("Images/Zombie@2x.png", 250, 50)
+    zombie1 = display.newImageRect("Images/Zombie@2x.png", 70, 150)
     zombie1.x = display.contentWidth * 3 / 8
     zombie1.y = display.contentHeight * 2.5 / 5
     zombie1.myName = "zombie1"
         
     sceneGroup:insert( zombie1)
 
-    zombie1platform = display.newImageRect("Images//Level1PlatformHunter.png", 250, 50)
-    zombie1platform.x = display.contentWidth * 3 / 8
-    zombie1platform.y = display.contentHeight * 2.8 / 5
+    zombie1platform = display.newImageRect("Images//Level1PlatformHunter.png", 30, 125)
+    zombie1platform.x = display.contentWidth * 6.3 / 8
+    zombie1platform.y = display.contentHeight * 0.37 / 5
         
     sceneGroup:insert( zombie1platform)
 
-    zombie2 = display.newImageRect("Images/Zombie@2x.png", 150, 50)
-    zombie2.x = display.contentWidth * 6 / 8
-    zombie2.y = display.contentHeight * 2.5 / 5
+    zombie2 = display.newImageRect("Images/Zombie@2x.png", 70, 150)
+    zombie2.x = display.contentWidth * 2.18 / 8
+    zombie2.y = display.contentHeight * 1.37 / 5
     zombie2.myName = "zombie2"
         
     sceneGroup:insert( zombie2)
 
     zombie2platform = display.newImageRect("Images//Level1PlatformHunter.png", 150, 50)
-    zombie2platform.x = display.contentWidth * 6 / 8
-    zombie2platform.y = display.contentHeight * 2.2 / 5
+    zombie2platform.x = display.contentWidth * 0.72 / 8
+    zombie2platform.y = display.contentHeight * 3.63 / 5
         
     sceneGroup:insert( zombie2platform)
 
-    zombie3 = display.newImageRect("Images/Zombie@2x.png", 50, 150)
-    zombie3.x = display.contentWidth * 5.5 / 8
-    zombie3.y = display.contentHeight * 0.4 / 5
+    zombie3 = display.newImageRect("Images/Zombie@2x.png", 70, 150)
+    zombie3.x = display.contentWidth * 7.3 / 8
+    zombie3.y = display.contentHeight * 2.87 / 5
     zombie3.myName = "zombie3"
         
     sceneGroup:insert( zombie3)
 
-    zombie3platform = display.newImageRect("Images/Level1PlatformHunter.png", 50, 150)
-    zombie3platform.x = display.contentWidth * 5.8 / 8
-    zombie3platform.y = display.contentHeight * 0.4 / 5
+    zombie3platform = display.newImageRect("Images/Level1PlatformHunter.png", 150, 50)
+    zombie3platform.x = display.contentWidth * 7.3 / 8
+    zombie3platform.y = display.contentHeight * 3.5 / 5
         
     sceneGroup:insert( zombie3platform)
 
@@ -545,8 +545,8 @@ function scene:create( event )
 
     --key1
     key1 = display.newImageRect ("Images/KeyObjectNate@2x.png", 70, 70)
-    key1.x = 610
-    key1.y = 480
+    key1.x = 90
+    key1.y = 500
     key1.myName = "key1"
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
@@ -563,7 +563,7 @@ function scene:create( event )
 
     --key3
     key3 = display.newImageRect ("Images/KeyObjectNate@2x.png", 70, 70)
-    key3.x = 950
+    key3.x = 963
     key3.y = 130
     key3.myName = "key3"
 
