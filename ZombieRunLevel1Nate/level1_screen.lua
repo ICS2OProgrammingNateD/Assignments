@@ -60,7 +60,7 @@ local zombie2platform
 local zombie3platform
 
 local torchesAndSign
-local door
+local portal
 local character
 
 local heart1
@@ -150,12 +150,12 @@ end
 
 
 local function ReplaceCharacter()
-    character = display.newImageRect("Images/KickyKatRight.png", 100, 150)
+    character = display.newImageRect("Images/Character1@2x.png", 100, 150)
     character.x = display.contentWidth * 0.5 / 8
     character.y = display.contentHeight  * 0.1 / 3
-    character.width = 75
-    character.height = 100
-    character.myName = "KickyKat"
+    character.width = 90
+    character.height = 150
+    character.myName = "Bob"
 
     -- intialize horizontal movement of character
     motionx = 0
@@ -257,7 +257,7 @@ local function onCollision( self, event )
             questionsAnswered = questionsAnswered + 1
         end
 
-        if (event.target.myName == "door") then
+        if (event.target.myName == "portal") then
             --check to see if the user has answered 5 questions
             --timer.performWithDelay( 200, YouWinTransition )
             --audio.play(sound1)
@@ -290,8 +290,8 @@ local function AddCollisionListeners()
     key3.collision = onCollision
     key3:addEventListener( "collision" )
 
-    door.collision = onCollision
-    door:addEventListener( "collision" )
+    portal.collision = onCollision
+    portal:addEventListener( "collision" )
 end
 
 local function RemoveCollisionListeners()
@@ -303,7 +303,7 @@ local function RemoveCollisionListeners()
     key2:removeEventListener( "collision" )
     key3:removeEventListener( "collision" )
 
-    door:removeEventListener( "collision")
+    portal:removeEventListener( "collision")
 
 end
 
@@ -331,7 +331,7 @@ local function AddPhysicsBodies()
     physics.addBody(key2, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(key3, "static",  {density=0, friction=0, bounce=0} )
 
-    physics.addBody(door, "static", {density=1, friction=0.3, bounce=0.2})
+    physics.addBody(portal, "static", {density=1, friction=0.3, bounce=0.2})
 
 end
 
@@ -385,7 +385,7 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -- Insert the background image
-    bkg_image = display.newImageRect("Images/Level-1BKG.png", display.contentWidth, display.contentHeight)
+    bkg_image = display.newImageRect("Images/Level1ScreenNate@2x.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentWidth / 2 
     bkg_image.y = display.contentHeight / 2
 
@@ -393,25 +393,25 @@ function scene:create( event )
     sceneGroup:insert( bkg_image )    
     
     -- Insert the platforms
-    platform1 = display.newImageRect("Images/Level-1Platform1.png", 250, 50)
+    platform1 = display.newImageRect("Images//Level1PlatformHunter.png", 250, 50)
     platform1.x = display.contentWidth * 1 / 8
     platform1.y = display.contentHeight * 1.6 / 4
         
     sceneGroup:insert( platform1 )
 
-    platform2 = display.newImageRect("Images/Level-1Platform1.png", 150, 50)
+    platform2 = display.newImageRect("Images//Level1PlatformHunter.png", 150, 50)
     platform2.x = display.contentWidth /2.1
     platform2.y = display.contentHeight * 1.2 / 4
         
     sceneGroup:insert( platform2 )
 
-    platform3 = display.newImageRect("Images/Level-1Platform1.png", 180, 50)
+    platform3 = display.newImageRect("Images//Level1PlatformHunter.png", 180, 50)
     platform3.x = display.contentWidth *3 / 5
     platform3.y = display.contentHeight * 3.5 / 5
         
     sceneGroup:insert( platform3 )
 
-    platform4 = display.newImageRect("Images/Level-1Platform1.png", 180, 50)
+    platform4 = display.newImageRect("Images//Level1PlatformHunter.png", 180, 50)
     platform4.x = display.contentWidth *4.7 / 5
     platform4.y = display.contentHeight * 1.3 / 5
         
@@ -424,57 +424,57 @@ function scene:create( event )
         
     sceneGroup:insert( zombie1)
 
-    zombie1platform = display.newImageRect("Images/Level-1Platform1.png", 250, 50)
+    zombie1platform = display.newImageRect("Images//Level1PlatformHunter.png", 250, 50)
     zombie1platform.x = display.contentWidth * 3 / 8
     zombie1platform.y = display.contentHeight * 2.8 / 5
         
     sceneGroup:insert( zombie1platform)
 
-    zombie2 = display.newImageRect("Images/Level-1zombie2.png", 150, 50)
+    zombie2 = display.newImageRect("Images/Zombie@2x.png", 150, 50)
     zombie2.x = display.contentWidth * 6 / 8
     zombie2.y = display.contentHeight * 2.5 / 5
     zombie2.myName = "zombie2"
         
     sceneGroup:insert( zombie2)
 
-    zombie2platform = display.newImageRect("Images/Level-1Platform1.png", 150, 50)
+    zombie2platform = display.newImageRect("Images//Level1PlatformHunter.png", 150, 50)
     zombie2platform.x = display.contentWidth * 6 / 8
     zombie2platform.y = display.contentHeight * 2.2 / 5
         
     sceneGroup:insert( zombie2platform)
 
-    zombie3 = display.newImageRect("Images/Level-1zombie3.png", 50, 150)
+    zombie3 = display.newImageRect("Images/Zombie@2x.png", 50, 150)
     zombie3.x = display.contentWidth * 5.5 / 8
     zombie3.y = display.contentHeight * 0.4 / 5
     zombie3.myName = "zombie3"
         
     sceneGroup:insert( zombie3)
 
-    zombie3platform = display.newImageRect("Images/Level-1Platform2.png", 50, 150)
+    zombie3platform = display.newImageRect("Images/Level1PlatformHunter.png", 50, 150)
     zombie3platform.x = display.contentWidth * 5.8 / 8
     zombie3platform.y = display.contentHeight * 0.4 / 5
         
     sceneGroup:insert( zombie3platform)
 
     -- Insert the torchesAndSign Objects
-    torchesAndSign = display.newImageRect("Images/Level-1Random.png", display.contentWidth, display.contentHeight)
-    torchesAndSign.x = display.contentCenterX
-    torchesAndSign.y = display.contentCenterY + 10
+    --torchesAndSign = display.newImageRect("Images/Level-1Random.png", display.contentWidth, display.contentHeight)
+    --torchesAndSign.x = display.contentCenterX
+    --torchesAndSign.y = display.contentCenterY + 10
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( torchesAndSign )
+    --sceneGroup:insert( torchesAndSign )
 
-    -- Insert the Door
-    door = display.newImage("Images/Level-1Door.png", 200, 200)
-    door.x = display.contentWidth/5 
-    door.y = display.contentHeight*6.1/7
-    door.myName = "door"
+    -- Insert the portal
+    portal = display.newImageRect("Images/portalNate@2x.png", 170, 170)
+    portal.x = display.contentWidth/10
+    portal.y = display.contentHeight*6.1/7
+    portal.myName = "portal"
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( door )
+    sceneGroup:insert( portal )
 
     -- Insert the Hearts
-    heart1 = display.newImageRect("Images/heart.png", 80, 80)
+    heart1 = display.newImageRect("Images/HeartHunter@2x.png", 80, 80)
     heart1.x = 50
     heart1.y = 50
     heart1.isVisible = true
@@ -482,7 +482,7 @@ function scene:create( event )
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( heart1 )
 
-    heart2 = display.newImageRect("Images/heart.png", 80, 80)
+    heart2 = display.newImageRect("Images/HeartHunter@2x.png", 80, 80)
     heart2.x = 130
     heart2.y = 50
     heart2.isVisible = true
@@ -491,7 +491,7 @@ function scene:create( event )
     sceneGroup:insert( heart2 )
 
     --Insert the right arrow
-    rArrow = display.newImageRect("Images/RightArrowUnpressed.png", 100, 50)
+    rArrow = display.newImageRect("Images/RightArrowUnpressed@2x.png", 100, 50)
     rArrow.x = display.contentWidth * 9.2 / 10
     rArrow.y = display.contentHeight * 9.5 / 10
    
@@ -499,7 +499,7 @@ function scene:create( event )
     sceneGroup:insert( rArrow)
 
     --Insert the left arrow
-    lArrow = display.newImageRect("Images/LeftArrowUnpressed.png", 100, 50)
+    lArrow = display.newImageRect("Images/LeftArrowUnpressed@2x.png", 100, 50)
     lArrow.x = display.contentWidth * 7.3 / 10
     lArrow.y = display.contentHeight * 9.5 / 10
    
@@ -507,7 +507,7 @@ function scene:create( event )
     sceneGroup:insert( lArrow)
 
     --Insert the left arrow
-    uArrow = display.newImageRect("Images/UpArrowUnpressed.png", 50, 100)
+    uArrow = display.newImageRect("Images/UpArrowUnpressed@2x.png", 50, 100)
     uArrow.x = display.contentWidth * 8.2 / 10
     uArrow.y = display.contentHeight * 8.5 / 10
 
@@ -536,7 +536,7 @@ function scene:create( event )
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( topW )
 
-    floor = display.newImageRect("Images/Level-1Floor.png", 1024, 100)
+    floor = display.newImageRect("Images/Floor@2x.png", 1024, 110)
     floor.x = display.contentCenterX
     floor.y = display.contentHeight * 1.06
     
@@ -544,7 +544,7 @@ function scene:create( event )
     sceneGroup:insert( floor )
 
     --key1
-    key1 = display.newImageRect ("Images/key.png", 70, 70)
+    key1 = display.newImageRect ("Images/KeyObjectNate@2x.png", 70, 70)
     key1.x = 610
     key1.y = 480
     key1.myName = "key1"
@@ -553,7 +553,7 @@ function scene:create( event )
     sceneGroup:insert( key1 )
 
     --key2
-    key2 = display.newImageRect ("Images/key.png", 70, 70)
+    key2 = display.newImageRect ("Images/KeyObjectNate@2x.png", 70, 70)
     key2.x = 490
     key2.y = 170
     key2.myName = "key2"
@@ -562,7 +562,7 @@ function scene:create( event )
     sceneGroup:insert( key2 )
 
     --key3
-    key3 = display.newImageRect ("Images/key.png", 70, 70)
+    key3 = display.newImageRect ("Images/KeyObjectNate@2x.png", 70, 70)
     key3.x = 950
     key3.y = 130
     key3.myName = "key3"

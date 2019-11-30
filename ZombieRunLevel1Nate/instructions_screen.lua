@@ -22,6 +22,10 @@ sceneName = "instructions_screen"
 -- Creating Scene Object
 scene = composer.newScene( sceneName ) 
 
+
+-- load sound
+audio.loadSound()
+
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
@@ -37,6 +41,11 @@ local function BackTransition( )
     composer.gotoScene( "main_menu", {effect = "slideDown", time = 1000})
 end
 
+local function click( touch )
+    if (touch.phase == "began") then
+        audio.play(mouseClick)
+    end
+end
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -91,6 +100,10 @@ function scene:create( event )
 
     -----------------------------------------------------------------------------------------
 
+    -- add mouse click sound
+    mouseClick = audio.loadSound("Sounds/patsound.mp3")
+
+
     -- Associating Buttons with this scene
     sceneGroup:insert( backButton )
     
@@ -119,6 +132,8 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+
+         Runtime:addEventListener("touch", click)
     end
 
 end -- function scene:show( event )
