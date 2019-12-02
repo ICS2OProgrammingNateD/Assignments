@@ -153,8 +153,8 @@ function scene:create( event )
     -- make the background colour gradient
     paint = {
     type = "gradient",
-    color1 = { 204/255, 255/255, 204/255 },
-    color2 = { 0, 102/255, 102/255 },
+    color1 = { 0/255, 102/255, 204/255 },
+    color2 = { 153/255, 204/255, 255/255 },
     direction = "up"
     }
     
@@ -172,14 +172,14 @@ function scene:create( event )
     rearPropeller.height = 50
 
     -- create the cloud image
-    cloudImage = display.newImage("Images/cloud.jpg", 512, 69)
-    cloudImage.width = 1200
-    cloudImage.height = 270
+    cloudImage = display.newImage("Images/cloud.png", 535, 40)
+    cloudImage.width = 1100
+    cloudImage.height = 170
 
     -- create the distant mountains
-    distantMountains = display.newImage("Images/mountains.png", 512, 729)
+    distantMountains = display.newImage("Images/mountains.png", 512, 800)
     distantMountains.width = 1024
-    distantMountains.height = 100
+    distantMountains.height = 200
 
     -- creating BuildingGames text 
     buildingGamesText = display.newText("BUILDING GAMES", 512, 100, native.systemFontBold, 110)
@@ -261,6 +261,7 @@ function scene:hide( event )
         distantMountains.isVisible = false
         cloudImage.isVisible = false
         display.setDefault("background", 0/255, 0/255, 0/255)
+        physics.stop()
 
     end
 
