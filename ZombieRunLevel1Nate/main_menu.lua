@@ -36,6 +36,8 @@ audio.loadSound()
 -- add background music
 backgroundMusic = audio.loadStream("Sounds/bkgMusic.mp3")
 
+physics.start()
+
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------

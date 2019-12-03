@@ -5,13 +5,11 @@
 -- Description: This is the splash screen of the game. It displays the app logo and the 
 -- company logo with some sort of animation...
 -----------------------------------------------------------------------------------------
-
 -- Use Composer Library
 local composer = require( "composer" )
 -- require physics 
 local physics = require("physics")
 
--- start physics
 physics.start()
 
 -- Name the Scene
@@ -196,9 +194,11 @@ function scene:create( event )
 
     buildingGamesText:setFillColor(gradient1)
 
+
+
     -- add to physics
     physics.addBody(distantMountains, "static", {friction = 0.5})
-
+    
 end -- function scene:create( event )
 
 --------------------------------------------------------------------------------------------

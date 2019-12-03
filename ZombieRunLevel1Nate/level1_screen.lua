@@ -14,6 +14,8 @@
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
+physics.start()
+
 
 -- Use Composer Libraries
 local composer = require( "composer" )
@@ -31,6 +33,8 @@ sceneName = "level1_screen"
 
 -- Creating Scene Object
 local scene = composer.newScene( sceneName )
+
+
 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
