@@ -99,8 +99,8 @@ local scrollYSpeed = 3
 local scrollXSpeed = -7
 
 local scrollSpeed1 = -1
-local scrollSpeed2 = -4 
-local scrollSpeed3 = 3
+local scrollSpeed2 = 0.3
+local scrollSpeed3 = 2
 
 
 -----------------------------------------------------------------------------------------
@@ -147,11 +147,11 @@ local function MoveZombie1(event)
 
     -- I got the base of this information from stackoverflow how to make multiple objects bounce around in Corona sdk
     -- this makes the image respond to hitting a wall
-    if (zombie1.x < 0) then 
+    if (zombie1.x < 310) then 
         zombie1.x = zombie1.x + 3 scrollSpeed3 = -scrollSpeed3
     end
 
-    if(zombie1.x > 250) then 
+    if(zombie1.x > 450) then 
         zombie1.x = zombie1.x - 3 scrollSpeed3 = -scrollSpeed3
     end
 end
@@ -187,11 +187,11 @@ local function MoveZombie3(event)
 
     -- I got the base of this information from stackoverflow how to make multiple objects bounce around in Corona sdk
     -- this makes the image respond to hitting a wall
-    if (zombie3.x < 0) then 
+    if (zombie3.x < 890) then 
         zombie3.x = zombie3.x + 3 scrollSpeed1 = -scrollSpeed1
     end
 
-    if(zombie3.x > 250) then 
+    if(zombie3.x > 1000) then 
         zombie3.x = zombie3.x - 3 scrollSpeed1 = -scrollSpeed1
     end
 end
@@ -200,19 +200,8 @@ end
 -- Function: Move portal
 -- The function that moves the companyLogo on the screen
 local function SpinPortal(event)
-    transition.to(  portal, { rotation = portal.rotation + 5000000000000000000000, iterations = 1, time = 990000000000000000000 } )
+    portal:rotate(10)
 end
-
-
--- Move zombie will be called over and over again
-Runtime:addEventListener("enterFrame", MoveZombie1)
--- Move zombie will be called over and over again
-Runtime:addEventListener("enterFrame", MoveZombie2)
--- Move zombie will be called over and over again
-Runtime:addEventListener("enterFrame", MoveZombie3)
-
-
-
 
 
 
@@ -231,13 +220,11 @@ end
 local function AddRuntimeListeners()
     Runtime:addEventListener("enterFrame", movePlayer)
     Runtime:addEventListener("touch", stop )
-    --Runtime:addEventListener("event", MoveZombie1)
 end
 
 local function RemoveRuntimeListeners()
     Runtime:removeEventListener("enterFrame", movePlayer)
     Runtime:removeEventListener("touch", stop )
-    --Runtime:removeEventListener("event", MoveZombie1)
 end
 
 
@@ -424,7 +411,7 @@ local function AddPhysicsBodies()
     physics.addBody(key2, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(key3, "static",  {density=0, friction=0, bounce=0} )
 
-    physics.addBody(portal, "static", {density=1, friction=0.3, bounce=0.2})
+    physics.addBody(portal, "static", {density=1, friction=0.3, bounce= 0.2})
 
 end
 
@@ -710,8 +697,10 @@ function scene:show( event )
         -- create the character, add physics bodies and runtime listeners
         ReplaceCharacter()
 
-        SpinPortal()
-
+        Runtime:addEventListener("enterFrame", MoveZombie1)
+        Runtime:addEventListener("enterFrame", MoveZombie2)
+        Runtime:addEventListener("enterFrame", MoveZombie3)
+        Runtime:addEventListener("enterFrame", SpinPortal)
       
     end
 
@@ -744,6 +733,11 @@ function scene:hide( event )
         RemoveArrowEventListeners()
         RemoveRuntimeListeners()
         display.remove(character)
+
+        Runtime:removeEventListener("enterFrame", MoveZombie1)
+        Runtime:removeEventListener("enterFrame", MoveZombie2)
+        Runtime:removeEventListener("enterFrame", MoveZombie3)
+        Runtime:removeEventListener("enterFrame", SpinPortal)
     end
 
 end --function scene:hide( event )

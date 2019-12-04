@@ -35,12 +35,12 @@ local scene = composer.newScene( sceneName )
 -- The local variables for this scene
 local questionText
 
-local firstNumber
-local secondNumber
+local selectQuestion
 
 local answer
 local wrongAnswer1
 local wrongAnswer2
+local wrongAnswer3
 
 local answerText 
 local wrongAnswerText1
@@ -133,28 +133,65 @@ end
 
 local function DisplayQuestion()
     --creating random numbers
-    firstNumber = math.random (0,15)
-    secondNumber = math.random (0,15)
+    selectQuestion = math.random (1,4)
 
-    -- calculate answer
-    answer = firstNumber + secondNumber
+    if (selectQuestion == 1) then
 
-    -- calculate wrong answers
-    wrongAnswer1 = answer + math.random(1, 3)
-    wrongAnswer2 = answer + math.random(4, 6)
-    wrongAnswer3 = answer + math.random(7, 9)
+        -- create question 
+        questionText.text = "What colour is the sun?"
 
+        -- creating answer text 
+        answerText.text = "Red"
 
-    --creating the question depending on the selcetion number
-    questionText.text = firstNumber .. " + " .. secondNumber .. " ="
+        -- create wrong answers 
+        wrongText1.text = "Orange"
 
-    --creating answer text from list it corispondes with the animals list
-    answerText.text = answer
-    
-    --creating wrong answers
-    wrongText1.text = wrongAnswer1
-    wrongText2.text = wrongAnswer2
-    wrongText3.text = wrongAnswer3
+        wrongText2.text = "Black"
+
+        wrongText3.text = "Blue"
+
+    elseif (selectQuestion == 2) then 
+        -- create question 
+        questionText.text = "Which colour is a leaf not in fall?"
+
+        -- creating answer text 
+        answerText.text = "Blue"
+
+        -- create wrong answers 
+        wrongText1.text = "Red"
+
+        wrongText2.text = "Yellow"
+
+        wrongText3.text = "Brown"
+
+    elseif (selectQuestion == 3) then 
+        -- create question 
+        questionText.text = "What colour is healthy soil?"
+
+        -- creating answer text 
+        answerText.text = "Brown"
+
+        -- create wrong answers 
+        wrongText1.text = "Green"
+
+        wrongText2.text = "Dark Red"
+
+        wrongText3.text = "Light Green"
+
+    elseif (selectQuestion == 4) then 
+        -- create question 
+        questionText.text = "What colour is Mars?"
+
+        -- creating answer text 
+        answerText.text = "Dark Red"
+
+        -- create wrong answers 
+        wrongText1.text = "Green"
+
+        wrongText2.text = "Light Red"
+
+        wrongText3.text = "Orange"
+    end
 end
 
 local function PositionAnswers()
@@ -243,19 +280,19 @@ function scene:create( event )
     --making a cover rectangle to have the background fully bolcked where the question is
     cover = display.newRoundedRect(display.contentCenterX, display.contentCenterY, display.contentWidth*0.8, display.contentHeight*0.95, 50 )
     --setting its colour
-    cover:setFillColor(96/255, 96/255, 96/255)
+    cover:setFillColor(200/255, 0/255, 0/255)
 
     -- create the question text object
-    questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 75)
+    questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 50)
 
     -- create the answer text object & wrong answer text objects
-    answerText = display.newText("", X1, Y2, Arial, 75)
+    answerText = display.newText("", X1, Y2, Arial, 50)
     answerText.anchorX = 0
-    wrongText1 = display.newText("", X2, Y2, Arial, 75)
+    wrongText1 = display.newText("", X2, Y2, Arial, 50)
     wrongText1.anchorX = 0
-    wrongText2 = display.newText("", X1, Y1, Arial, 75)
+    wrongText2 = display.newText("", X1, Y1, Arial, 50)
     wrongText2.anchorX = 0
-    wrongText3 = display.newText("", X2, Y1, Arial, 75)
+    wrongText3 = display.newText("", X2, Y1, Arial, 50)
     wrongText3.anchorX = 0
 
     -----------------------------------------------------------------------------------------
