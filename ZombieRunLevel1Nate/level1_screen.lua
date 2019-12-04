@@ -95,6 +95,14 @@ local theKey
 
 local questionsAnswered = 0
 
+local scrollYSpeed = 3
+local scrollXSpeed = -7
+
+local scrollSpeed1 = -1
+local scrollSpeed2 = -4 
+local scrollSpeed3 = 3
+
+
 -----------------------------------------------------------------------------------------
 -- LOCAL SCENE FUNCTIONS
 ----------------------------------------------------------------------------------------- 
@@ -129,6 +137,84 @@ local function stop (event)
     end
 end
 
+-- Function: move zombie
+
+local function MoveZombie1(event)
+-- add the scroll speed to the x-value of the character
+    zombie1.alpha = 1 
+    zombie1.x = zombie1.x + scrollSpeed3
+
+
+    -- I got the base of this information from stackoverflow how to make multiple objects bounce around in Corona sdk
+    -- this makes the image respond to hitting a wall
+    if (zombie1.x < 0) then 
+        zombie1.x = zombie1.x + 3 scrollSpeed3 = -scrollSpeed3
+    end
+
+    if(zombie1.x > 250) then 
+        zombie1.x = zombie1.x - 3 scrollSpeed3 = -scrollSpeed3
+    end
+end
+
+
+-- Function: move zombie
+
+local function MoveZombie2(event)
+-- add the scroll speed to the x-value of the character
+    zombie2.alpha = 1 
+    zombie2.x = zombie2.x + scrollSpeed2
+
+
+    -- I got the base of this information from stackoverflow how to make multiple objects bounce around in Corona sdk
+    -- this makes the image respond to hitting a wall
+    if (zombie2.x < 0) then 
+        zombie2.x = zombie2.x + 3 scrollSpeed2 = -scrollSpeed2
+    end
+
+    if(zombie2.x > 250) then 
+        zombie2.x = zombie2.x - 3 scrollSpeed2 = -scrollSpeed2
+    end
+end
+
+
+-- Function: move zombie
+
+local function MoveZombie3(event)
+-- add the scroll speed to the x-value of the character
+    zombie3.alpha = 1 
+    zombie3.x = zombie3.x + scrollSpeed1
+
+
+    -- I got the base of this information from stackoverflow how to make multiple objects bounce around in Corona sdk
+    -- this makes the image respond to hitting a wall
+    if (zombie3.x < 0) then 
+        zombie3.x = zombie3.x + 3 scrollSpeed1 = -scrollSpeed1
+    end
+
+    if(zombie3.x > 250) then 
+        zombie3.x = zombie3.x - 3 scrollSpeed1 = -scrollSpeed1
+    end
+end
+
+
+-- Function: Move portal
+-- The function that moves the companyLogo on the screen
+local function SpinPortal(event)
+    transition.to(  portal, { rotation = portal.rotation + 5000000000000000000000, iterations = 1, time = 990000000000000000000 } )
+end
+
+
+-- Move zombie will be called over and over again
+Runtime:addEventListener("enterFrame", MoveZombie1)
+-- Move zombie will be called over and over again
+Runtime:addEventListener("enterFrame", MoveZombie2)
+-- Move zombie will be called over and over again
+Runtime:addEventListener("enterFrame", MoveZombie3)
+
+
+
+
+
 
 local function AddArrowEventListeners()
     rArrow:addEventListener("touch", right)
@@ -145,11 +231,13 @@ end
 local function AddRuntimeListeners()
     Runtime:addEventListener("enterFrame", movePlayer)
     Runtime:addEventListener("touch", stop )
+    --Runtime:addEventListener("event", MoveZombie1)
 end
 
 local function RemoveRuntimeListeners()
     Runtime:removeEventListener("enterFrame", movePlayer)
     Runtime:removeEventListener("touch", stop )
+    --Runtime:removeEventListener("event", MoveZombie1)
 end
 
 
@@ -219,6 +307,7 @@ local function onCollision( self, event )
             -- remove runtime listeners that move the character
             RemoveArrowEventListeners()
             RemoveRuntimeListeners()
+
 
             -- remove the character from the display
             display.remove(character)
@@ -621,6 +710,9 @@ function scene:show( event )
         -- create the character, add physics bodies and runtime listeners
         ReplaceCharacter()
 
+        SpinPortal()
+
+      
     end
 
 end --function scene:show( event )
