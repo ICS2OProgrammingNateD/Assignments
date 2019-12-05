@@ -37,14 +37,10 @@ local questionText
 
 local selectQuestion
 
-local answer
-local wrongAnswer1
-local wrongAnswer2
-local wrongAnswer3
-
 local answerText 
-local wrongAnswerText1
-local wrongAnswerText2
+local wrongText1
+local wrongText2
+local wrongText3
 
 local answerPosition = 1
 local bkg
@@ -55,8 +51,13 @@ local X2 = display.contentWidth*4/7
 local Y1 = display.contentHeight*1/2
 local Y2 = display.contentHeight*5.5/7
 
-local userAnswer
+
 local textTouched = false
+
+local sound1 = audio.loadSound("Sounds/correct.mp3")
+local sound1Channel
+local sound2 = audio.loadSound("Sounds/incorrect.wav")
+local sound2Channel
 
 -----------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
@@ -72,10 +73,10 @@ end
 -----------------------------------------------------------------------------------------
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerAnswer(touch)
-    userAnswer = answerText.text
+
     
     if (touch.phase == "ended") then
-
+        sound1Channel = audio.play(sound1)
         BackToLevel1( )
     
     end 
@@ -83,10 +84,9 @@ end
 
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer(touch)
-    userAnswer = wrongText1.text
     
     if (touch.phase == "ended") then
-        
+        sound2Channel = audio.play(sound2)
         BackToLevel1( )
         
         
@@ -95,10 +95,9 @@ end
 
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer2(touch)
-    userAnswer = wrongText2.text
     
     if (touch.phase == "ended") then
-
+        sound2Channel = audio.play(sound2)
         BackToLevel1( )
         
     end 
@@ -106,10 +105,9 @@ end
 
 
 local function TouchListenerWrongAnswer3(touch)
-    userAnswer = wrongText3.text
     
     if (touch.phase == "ended") then
-
+        sound2Channel = audio.play(sound2)
         BackToLevel1( )
         
     end 
@@ -259,6 +257,8 @@ local function PositionAnswers()
         wrongText3.y = Y1
     end
 end
+
+
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS

@@ -43,9 +43,10 @@ local scene = composer.newScene( sceneName )
 -- The local variables for this scene
 
 -- create variable for sound
-local sound1 = audio.loadSound("Sounds/Cheer.m4a")
-local sound2 = audio.loadSound("Sounds/YouLose.mp3")
-local sound3 = audio.loadSound("Sounds/Pop.mp3")
+local sound1 = audio.loadSound("Sounds/YouWinSound.wav")
+local sound2 = audio.loadSound("Sounds/YouLoseSound.wav")
+local sound3 = audio.loadSound("Sounds/zombiesound.wav")
+local sound4 = audio.loadSound("Sounds/keysound.wav")
 
 
 local bkg_image
@@ -281,8 +282,9 @@ local function onCollision( self, event )
 
     if ( event.phase == "began" ) then
 
-        --Pop sound
-        
+        --zombie sound
+        -- add sound effect here
+        --audio.play(sound3)
 
         if  (event.target.myName == "zombie1") or 
             (event.target.myName == "zombie2") or
@@ -323,6 +325,9 @@ local function onCollision( self, event )
 
             -- get the key that the user hit
             theKey = event.target
+
+            -- add sound effect here
+            audio.play(sound4)
 
             -- stop the character from moving
             motionx = 0
