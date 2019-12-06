@@ -34,7 +34,7 @@ audio.loadStream()
 audio.loadSound()
 
 -- add background music
-backgroundMusic = audio.loadStream("Sounds/bkgMusic.mp3")
+backgroundMusic = audio.loadStream("Sounds/level1music.mp3")
 
 physics.start()
 
@@ -58,6 +58,7 @@ local unmuteButton
 -----------------------------------------------------------------------------------------
 -- create global VARIABLES
 soundOn = true
+
 
 
 -----------------------------------------------------------------------------------------

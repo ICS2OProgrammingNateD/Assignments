@@ -107,6 +107,8 @@ local scrollSpeed3 = 2
 -----------------------------------------------------------------------------------------
 -- LOCAL SCENE FUNCTIONS
 ----------------------------------------------------------------------------------------- 
+
+
  
 -- When right arrow is touched, move character right
 local function right (touch)
@@ -357,6 +359,11 @@ local function onCollision( self, event )
     end
 end
 
+-- create a pause screen transition
+local function PauseScreenTransition()
+    composer.showOverlay( "level1_pause", { isModal = true, effect = "fade", time = 100})
+end   
+
 
 local function AddCollisionListeners()
     -- if character collides with key, onCollision will be called
@@ -469,13 +476,37 @@ function scene:create( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
+     -- Creating Play Button
+    pauseButton = widget.newButton( 
+        {   
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth*14.5/16,
+            y = display.contentHeight*0.5/8,
+            
+            -- Setting Dimensions
+            width = 200,
+            height = 100,
+
+            -- Insert the images here
+            defaultFile = "Images/pausebutton.png",
+            overFile = "Images/pausebutton.png", 
+
+            -- When the button is released, call the Level1 screen transition function
+            onRelease = PauseScreenTransition
+            
+        } )
+
+    sceneGroup:insert( pauseButton )
+
     -- Insert the background image
     bkg_image = display.newImageRect("Images/Level1ScreenNate@2x.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentWidth / 2 
     bkg_image.y = display.contentHeight / 2
 
     -- Insert background image into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( bkg_image )    
+    sceneGroup:insert( bkg_image )
+    -- Send the background image to the back layer so all other objects can be on top
+    bkg_image:toBack()    
     
     -- Insert the platforms
     platform1 = display.newImageRect("Images//Level1PlatformHunter.png", 340, 50)
