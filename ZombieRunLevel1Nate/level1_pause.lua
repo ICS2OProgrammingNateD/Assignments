@@ -24,7 +24,7 @@ local scene = composer.newScene( sceneName )
 audio.loadStream()
 
 -- add background music
-backgroundMusic = audio.loadStream("Sounds/level1music.mp3")
+local backgroundMusic = audio.loadStream("Sounds/level1music.mp3")
 
 -----------------------------------------------------------------------------------------
 -- FORWARD REFERENCES
@@ -36,13 +36,12 @@ local backButton
 local cover
 local muteButton
 local unmuteButton
-local bkgMusic
+local bkgMusicChannel1
 
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL VARIABLES
 -----------------------------------------------------------------------------------------
-
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -62,7 +61,7 @@ end
 local function Mute(touch)
     if (touch.phase == "ended") then
         -- pause the sound
-        bkgMusicChannel = audio.pause(bkgMusic)
+        audio.pause(bkgMusicChannel1)
         -- set sound on to be false
         soundOn = false
         -- hide the mute button
@@ -75,7 +74,7 @@ end
 local function Unmute(touch)
     if (touch.phase == "ended") then
         -- play the sound
-        bkgMusicChannel = audio.resume(bkgMusic)
+        audio.resume(bkgMusicChannel1)
         -- set sound on to be false
         soundOn = true
         -- hide the mute button
@@ -100,7 +99,7 @@ function scene:create( event )
     --making a cover rectangle to have the background fully bolcked where the question is
     cover = display.newRoundedRect(display.contentCenterX, display.contentCenterY, display.contentWidth*0.8, display.contentHeight*0.95, 50 )
     --setting its colour
-    cover:setFillColor(0/255, 0/255, 70/255)
+    cover:setFillColor(255/255, 153/255, 153/255)
 
     -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
@@ -119,8 +118,8 @@ function scene:create( event )
         height = 120,
 
         -- Setting Visual Properties
-        defaultFile = "Images/BackButtonUnpressedNate.png",
-        overFile = "Images/BackButtonPressedNate.png",
+        defaultFile = "Images/ResumeButtonHunter@2x.png",
+        overFile = "Images/ResumeButtonPressedHunter@2x.png",
 
         -- Setting Functional Properties
         onRelease = ResumeTransition
@@ -139,8 +138,8 @@ function scene:create( event )
         height = 120,
 
         -- Setting Visual Properties
-        defaultFile = "Images/BackButtonUnpressedNate.png",
-        overFile = "Images/BackButtonPressedNate.png",
+        defaultFile = "Images/MainMenuButoonUnpressedHunter@2x.png",
+        overFile = "Images/MainMenuButoonPressedHunter@2x.png",
 
         -- Setting Functional Properties
         onRelease = BackTransition
@@ -195,7 +194,17 @@ function scene:show( event )
 
     elseif ( phase == "did" ) then
 
-        bkgMusicChannel = audio.play(backgroundMusic, {loops = -1})
+        if (soundOn == true) then
+            muteButton.isVisible = true
+            unmuteButton.isVisible = false
+            bkgMusicChannel1 = audio.play(backgroundMusic, {channel=1, loops = -1})
+        else
+            muteButton.isVisible = false
+            unmuteButton.isVisible = true
+            audio.pause(bkgMusicChannel1)
+        end
+
+        
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute)
     end
@@ -220,6 +229,7 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
+        audio.stop(bkgMusicChannel1)
 
     -----------------------------------------------------------------------------------------
 

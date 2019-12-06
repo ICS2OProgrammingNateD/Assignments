@@ -255,6 +255,7 @@ local function ReplaceCharacter()
     AddRuntimeListeners()
 end
 
+
 local function MakeSoccerBallsVisible()
     key1.isVisible = true
     key2.isVisible = true
@@ -488,8 +489,8 @@ function scene:create( event )
             height = 100,
 
             -- Insert the images here
-            defaultFile = "Images/pausebutton.png",
-            overFile = "Images/pausebutton.png", 
+            defaultFile = "Images/PauseButtonUnpressed.png",
+            overFile = "Images/PauseButtonPressedHunter.png", 
 
             -- When the button is released, call the Level1 screen transition function
             onRelease = PauseScreenTransition
