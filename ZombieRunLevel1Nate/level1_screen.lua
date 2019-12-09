@@ -232,10 +232,10 @@ end
 
 
 local function ReplaceCharacter()
-    character = display.newImageRect("Images/Character1@2x.png", 100, 150)
+    character = display.newImageRect("Images/Character1@2x.png", 60, 120)
     character.x = display.contentWidth * 0.5 / 8
     character.y = display.contentHeight  * 0.1 / 3
-    character.width = 30
+    character.width = 40
     character.height = 60
     character.myName = "Bob"
 
@@ -686,7 +686,6 @@ function scene:create( event )
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( key3 )
-
 end --function scene:create( event )
 
 -----------------------------------------------------------------------------------------

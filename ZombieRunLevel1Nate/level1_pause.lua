@@ -19,12 +19,7 @@ sceneName = "level1_pause"
 -- Creating Scene Object
 local scene = composer.newScene( sceneName )
 
--- load sound
 
-audio.loadStream()
-
--- add background music
-local backgroundMusic = audio.loadStream("Sounds/level1music.mp3")
 
 -----------------------------------------------------------------------------------------
 -- FORWARD REFERENCES
@@ -34,9 +29,7 @@ local backgroundMusic = audio.loadStream("Sounds/level1music.mp3")
 local bkg
 local backButton
 local cover
-local muteButton
-local unmuteButton
-local bkgMusicChannel1
+
 
 
 -----------------------------------------------------------------------------------------
@@ -58,31 +51,10 @@ local function ResumeTransition( )
     ResumeGame()
 end
 
-local function Mute(touch)
-    if (touch.phase == "ended") then
-        -- pause the sound
-        audio.pause(bkgMusicChannel1)
-        -- set sound on to be false
-        soundOn = false
-        -- hide the mute button
-        muteButton.isVisible = false
-        -- make the unmuteButton Visible
-        unmuteButton.isVisible = true
-    end
-end
-
-local function Unmute(touch)
-    if (touch.phase == "ended") then
-        -- play the sound
-        audio.resume(bkgMusicChannel1)
-        -- set sound on to be false
-        soundOn = true
-        -- hide the mute button
-        muteButton.isVisible = true
-        -- make the unmuteButton Visible
-        unmuteButton.isVisible = false
-    end
-end
+-- Creating Transition Function to Credits Page
+local function InstructionsTransition( )       
+    composer.gotoScene( "instructions_screen", {effect = "zoomOutInFade", time = 1000})
+end 
 
 --------------------------------------------------------------------------------------
 -- The function called when the screen doesn't exist
@@ -111,7 +83,7 @@ function scene:create( event )
     {
         -- Setting Position
         x = display.contentWidth*8/16,
-        y = display.contentHeight*8/16,
+        y = display.contentHeight*4/16,
 
         -- Setting Dimensions
         width = 190,
@@ -147,26 +119,34 @@ function scene:create( event )
     } )
 
 
-    -- create mute button
-    muteButton = display.newImageRect("Images/MuteButtonUnpressedHunterC.png", 150, 150)
-    muteButton.x = display.contentWidth*8/16
-    muteButton.y = display.contentHeight*4/16
-    muteButton.isVisible = true
+    -- Creating instructions Button
+    instructionsButton = widget.newButton( 
+    {
+       -- Set its position on the screen relative to the screen size
+       x = display.contentWidth*8/16,
+       y = display.contentHeight*8/16,
 
-     -- create mute button
-    unmuteButton = display.newImageRect("Images/MuteButtonPressedHunterC.png", 150, 150)
-    unmuteButton.x = display.contentWidth*8/16
-    unmuteButton.y = display.contentHeight*4/16
-    unmuteButton.isVisible = false
+       -- Setting Dimensions
+       width = 200,
+       height = 120,
+
+       -- Insert the images here
+       defaultFile = "Images/InstructionsButtonUnpressedNate.png",
+       overFile = "Images/InstructionsButtonPressedNate.png", 
+
+       -- When the button is released, call the Credits transition function
+       onRelease = InstructionsTransition
+    } ) 
+
 
     -- Associating Buttons with this scene
     sceneGroup:insert(bkg)
     sceneGroup:insert(cover)
     sceneGroup:insert( backButton )
     sceneGroup:insert( resumeButton )
-	sceneGroup:insert( muteButton )
-    sceneGroup:insert( unmuteButton )
-    
+    sceneGroup:insert( instructionsButton )
+    sceneGroup:insert( correctObject )
+    sceneGroup:insert( incorrectObject )
 end    
 
 -----------------------------------------------------------------------------------------
@@ -194,19 +174,6 @@ function scene:show( event )
 
     elseif ( phase == "did" ) then
 
-        if (soundOn == true) then
-            muteButton.isVisible = true
-            unmuteButton.isVisible = false
-            bkgMusicChannel1 = audio.play(backgroundMusic, {channel=1, loops = -1})
-        else
-            muteButton.isVisible = false
-            unmuteButton.isVisible = true
-            audio.pause(bkgMusicChannel1)
-        end
-
-        
-        muteButton:addEventListener("touch", Mute)
-        unmuteButton:addEventListener("touch", Unmute)
     end
 
 end
@@ -234,9 +201,7 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
-       -- Called immediately after scene goes off screen.
-        muteButton:removeEventListener("touch", Mute)
-        unmuteButton:removeEventListener("touch", Unmute)
+     
     end
 
 end

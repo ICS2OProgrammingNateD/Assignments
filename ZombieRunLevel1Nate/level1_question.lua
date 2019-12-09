@@ -54,6 +54,9 @@ local Y2 = display.contentHeight*5.5/7
 
 local textTouched = false
 
+local correctObject
+local incorrectObject
+
 local sound1 = audio.loadSound("Sounds/correct.mp3")
 local sound1Channel
 local sound2 = audio.loadSound("Sounds/incorrect.wav")
@@ -62,6 +65,15 @@ local sound2Channel
 -----------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
+
+
+
+-- set the answer (when wrong) to display incorrect
+local function Hideincorrect()
+    incorrectObject.isVisible = false
+    correctObject.isVisible = false
+end
+
 
 --making transition to next scene
 local function BackToLevel1() 
@@ -77,7 +89,9 @@ local function TouchListenerAnswer(touch)
     
     if (touch.phase == "ended") then
         sound1Channel = audio.play(sound1)
-        BackToLevel1( )
+        correctObject.isVisible = true
+        timer.performWithDelay(500, Hideincorrect)
+        timer.performWithDelay(500, BackToLevel1)
     
     end 
 end
@@ -87,7 +101,9 @@ local function TouchListenerWrongAnswer(touch)
     
     if (touch.phase == "ended") then
         sound2Channel = audio.play(sound2)
-        BackToLevel1( )
+        incorrectObject.isVisible = true
+        timer.performWithDelay(500, Hideincorrect)
+        timer.performWithDelay(500, BackToLevel1)
         
         
     end 
@@ -98,7 +114,9 @@ local function TouchListenerWrongAnswer2(touch)
     
     if (touch.phase == "ended") then
         sound2Channel = audio.play(sound2)
-        BackToLevel1( )
+        incorrectObject.isVisible = true
+        timer.performWithDelay(500, Hideincorrect)
+        timer.performWithDelay(500, BackToLevel1)
         
     end 
 end
@@ -108,7 +126,9 @@ local function TouchListenerWrongAnswer3(touch)
     
     if (touch.phase == "ended") then
         sound2Channel = audio.play(sound2)
-        BackToLevel1( )
+        incorrectObject.isVisible = true
+        timer.performWithDelay(500, Hideincorrect)
+        timer.performWithDelay(500, BackToLevel1)
         
     end 
 end
@@ -280,7 +300,7 @@ function scene:create( event )
     --making a cover rectangle to have the background fully bolcked where the question is
     cover = display.newRoundedRect(display.contentCenterX, display.contentCenterY, display.contentWidth*0.8, display.contentHeight*0.95, 50 )
     --setting its colour
-    cover:setFillColor(200/255, 0/255, 0/255)
+    cover:setFillColor(0/255, 25/255, 52/255)
 
     -- create the question text object
     questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 50)
@@ -295,6 +315,16 @@ function scene:create( event )
     wrongText3 = display.newText("", X2, Y1, Arial, 50)
     wrongText3.anchorX = 0
 
+
+    -- create the correct text object and make it invisible
+    correctObject = display.newText( "Correct!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
+    correctObject:setTextColor(.2, 1, 0)
+    correctObject.isVisible = false
+
+    -- create the incorrect text object and make it invisible
+    incorrectObject = display.newText( "Incorrect!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
+    incorrectObject:setTextColor(1, 0, 0)
+    incorrectObject.isVisible = false
     -----------------------------------------------------------------------------------------
 
     -- insert all objects for this scene into the scene group

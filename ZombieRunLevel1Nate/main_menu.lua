@@ -34,9 +34,7 @@ audio.loadStream()
 audio.loadSound()
 
 -- add background music
-backgroundMusic = audio.loadStream("Sounds/level1music.mp3")
-
-physics.start()
+backgroundMusic = audio.loadStream("Sounds/bkgMusic.mp3")
 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -48,7 +46,7 @@ local creditsButton
 local mouseClick
 
 local bkgMusic
-local bkgMusicChannel2
+local bkgMusicChannel
 
 local muteButton
 local unmuteButton
@@ -58,7 +56,6 @@ local unmuteButton
 -----------------------------------------------------------------------------------------
 -- create global VARIABLES
 soundOn = true
-
 
 
 -----------------------------------------------------------------------------------------
@@ -85,10 +82,17 @@ end
 
 -----------------------------------------------------------------------------------------
 
+-- Creating Transition Function to Credits Page
+local function Music( )       
+      -- creating music
+      --bkgMusic = audio.loadStream("Sounds/bkg_music.mp3")
+    --bkgMusicChannel = audio.play (bkgMusic, {channel = 1, loops=-1} )
+end 
+
 local function Mute(touch)
     if (touch.phase == "ended") then
         -- pause the sound
-        audio.pause(bkgMusicChannel2)
+        bkgMusicChannel = audio.pause(bkgMusic)
         -- set sound on to be false
         soundOn = false
         -- hide the mute button
@@ -101,7 +105,7 @@ end
 local function Unmute(touch)
     if (touch.phase == "ended") then
         -- play the sound
-        audio.resume(bkgMusicChannel2)
+        bkgMusicChannel = audio.resume(bkgMusic)
         -- set sound on to be false
         soundOn = true
         -- hide the mute button
@@ -263,23 +267,13 @@ function scene:show( event )
     -- Called when the scene is now on screen.
     -- Insert code here to make the scene come alive.
     -- Example: start timers, begin animation, play audio, etc.
-    elseif ( phase == "did" ) then 
-
-    if (soundOn == true) then
-            muteButton.isVisible = true
-            unmuteButton.isVisible = false
-            bkgMusicChannel2 = audio.play(backgroundMusic, {channel=2, loops = -1})
-        else
-            muteButton.isVisible = false
-            unmuteButton.isVisible = true
-            audio.pause(bkgMusicChannel2)
-        end
-
-        
+    elseif ( phase == "did" ) then       
+        bkgMusicChannel = audio.play(backgroundMusic, {loops = -1})
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute)
         Runtime:addEventListener("touch", click)
-    end     
+
+    end
 
 end -- function scene:show( event )
 
@@ -301,7 +295,6 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-        audio.stop(bkgMusicChannel2)
        
     -----------------------------------------------------------------------------------------
 
