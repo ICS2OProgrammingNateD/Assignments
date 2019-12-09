@@ -145,8 +145,6 @@ function scene:create( event )
     sceneGroup:insert( backButton )
     sceneGroup:insert( resumeButton )
     sceneGroup:insert( instructionsButton )
-    sceneGroup:insert( correctObject )
-    sceneGroup:insert( incorrectObject )
 end    
 
 -----------------------------------------------------------------------------------------
