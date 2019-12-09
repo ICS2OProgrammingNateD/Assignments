@@ -151,7 +151,7 @@ end
 
 local function DisplayQuestion()
     --creating random numbers
-    selectQuestion = math.random (1,4)
+    selectQuestion = math.random (1,5)
 
     if (selectQuestion == 1) then
 
@@ -209,6 +209,20 @@ local function DisplayQuestion()
         wrongText2.text = "Light Red"
 
         wrongText3.text = "Orange"
+
+    elseif (selectQuestion == 5) then 
+        -- create question 
+        questionText.text = "What colour is Neptune?"
+
+        -- creating answer text 
+        answerText.text = "Blue"
+
+        -- create wrong answers 
+        wrongText1.text = "Red"
+
+        wrongText2.text = "Black"
+
+        wrongText3.text = "Purple"
     end
 end
 
