@@ -74,8 +74,8 @@ function scene:create( event )
         height = 120,
 
         -- Setting Visual Properties
-        defaultFile = "Images/BackButtonUnpressedNate.png",
-        overFile = "Images/BackButtonPressedNate.png",
+        defaultFile = "Images/MainMenuButoonUnpressedHunter@2x.png",
+        overFile = "Images/MainMenuButoonPressedHunter@2x.png",
 
         -- Setting Functional Properties
         onRelease = BackTransition

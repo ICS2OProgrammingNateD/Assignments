@@ -56,6 +56,11 @@ local function InstructionsTransition( )
     composer.gotoScene( "instructions_screen", {effect = "zoomOutInFade", time = 1000})
 end 
 
+-- Creating Transition to Level1 Screen
+local function Level1ScreenTransition( )
+    composer.gotoScene( "level1_screen", {effect = "fade", time = 2000})
+end    
+
 --------------------------------------------------------------------------------------
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -83,7 +88,7 @@ function scene:create( event )
     {
         -- Setting Position
         x = display.contentWidth*8/16,
-        y = display.contentHeight*4/16,
+        y = display.contentHeight*5/16,
 
         -- Setting Dimensions
         width = 190,
@@ -103,7 +108,7 @@ function scene:create( event )
     {
         -- Setting Position
         x = display.contentWidth*8/16,
-        y = display.contentHeight*12/16,
+        y = display.contentHeight*13/16,
 
         -- Setting Dimensions
         width = 190,
@@ -124,7 +129,7 @@ function scene:create( event )
     {
        -- Set its position on the screen relative to the screen size
        x = display.contentWidth*8/16,
-       y = display.contentHeight*8/16,
+       y = display.contentHeight*9/16,
 
        -- Setting Dimensions
        width = 200,
@@ -138,6 +143,26 @@ function scene:create( event )
        onRelease = InstructionsTransition
     } ) 
 
+    -- Creating instructions Button
+    restartButton = widget.newButton( 
+    {
+       -- Set its position on the screen relative to the screen size
+       x = display.contentWidth*8/16,
+       y = display.contentHeight*2/16,
+
+       -- Setting Dimensions
+       width = 200,
+       height = 120,
+
+       -- Insert the images here
+       defaultFile = "Images/RestartButtonNate@2x.png",
+       overFile = "Images/RestartButtonPressedNate@2x.png", 
+
+       -- When the button is released, call the Credits transition function
+       onRelease = Level1ScreenTransition
+    } ) 
+
+
 
     -- Associating Buttons with this scene
     sceneGroup:insert(bkg)
@@ -145,6 +170,7 @@ function scene:create( event )
     sceneGroup:insert( backButton )
     sceneGroup:insert( resumeButton )
     sceneGroup:insert( instructionsButton )
+    sceneGroup:insert( restartButton )
 end    
 
 -----------------------------------------------------------------------------------------

@@ -64,7 +64,7 @@ function scene:create( event )
     backButton = widget.newButton( 
     {
         -- Setting Position
-        x = display.contentWidth*1/16,
+        x = display.contentWidth*1.5/16,
         y = display.contentHeight*15/16,
 
         -- Setting Dimensions
@@ -72,8 +72,8 @@ function scene:create( event )
         height = 120,
 
         -- Setting Visual Properties
-        defaultFile = "Images/BackButtonUnpressedNate.png",
-        overFile = "Images/BackButtonPressedNate.png",
+        defaultFile = "Images/MainMenuButoonUnpressedHunter@2x.png",
+        overFile = "Images/MainMenuButoonPressedHunter@2x.png",
 
         -- Setting Functional Properties
         onRelease = BackTransition
