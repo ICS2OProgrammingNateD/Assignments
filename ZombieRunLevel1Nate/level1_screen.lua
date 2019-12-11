@@ -582,7 +582,7 @@ function scene:create( event )
     --sceneGroup:insert( torchesAndSign )
 
     -- Insert the portal
-    portal = display.newImageRect("Images/portalNate@2x.png", 170, 170)
+    portal = display.newImageRect("Images/PortalNate@2x.png", 170, 170)
     portal.x = display.contentWidth/10
     portal.y = display.contentHeight*6.1/7
     portal.myName = "portal"
