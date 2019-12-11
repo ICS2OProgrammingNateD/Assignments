@@ -10,7 +10,6 @@ local composer = require( "composer" )
 -- require physics 
 local physics = require("physics")
 
-physics.start()
 
 -- Name the Scene
 sceneName = "splash_screen"
@@ -71,12 +70,13 @@ end
 
 
 -- create text
-local function BuildingGames(event)
-
+local function BuildingGames()
+    -- add to physics
+    physics.addBody(distantMountains, "static", {friction = 0.5})
+    
+    
     -- add to physics
     physics.addBody(buildingGamesText, {density = .6, friction = 0.5, bounce = .580})
-
-   -- timer.performWithDelay(1962, BoomSound)
 end
 
 
@@ -119,14 +119,7 @@ end
 -- FUNCTION CALLS
 -------------------------------------------------------------------------------------------
 
--- Moveship will be called over and over again
-Runtime:addEventListener("enterFrame", MoveShip)
 
--- Moveship will be called over and over again
-Runtime:addEventListener("enterFrame", _MoveShip)
-
--- fade text will be called over and over again
-Runtime:addEventListener("enterFrame", FadeText)
 
 
 -----------------------------------------------------------------------------------------
@@ -194,11 +187,6 @@ function scene:create( event )
 
     buildingGamesText:setFillColor(gradient1)
 
-
-
-    -- add to physics
-    physics.addBody(distantMountains, "static", {friction = 0.5})
-    
 end -- function scene:create( event )
 
 --------------------------------------------------------------------------------------------
@@ -217,11 +205,21 @@ function scene:show( event )
 
     -- Called when the scene is still off screen (but is about to come on screen).
     if ( phase == "will" ) then
-       
+        physics.start()
+
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
+        -- Moveship will be called over and over again
+        Runtime:addEventListener("enterFrame", MoveShip)
+
+        -- Moveship will be called over and over again
+        Runtime:addEventListener("enterFrame", _MoveShip)
+
+        -- fade text will be called over and over again
+        Runtime:addEventListener("enterFrame", FadeText)
         -- start the splash screen music
+      
         bkgMusicChannel = audio.play(bkgSound)
         timer.performWithDelay(3600, BoomSound)
 
@@ -257,11 +255,19 @@ function scene:hide( event )
 
     elseif ( phase == "did" ) then
 
+        -- Moveship will be called over and over again
+        Runtime:removeEventListener("enterFrame", MoveShip)
+
+        -- Moveship will be called over and over again
+        Runtime:removeEventListener("enterFrame", _MoveShip)
+
+        -- fade text will be called over and over again
+        Runtime:removeEventListener("enterFrame", FadeText)
+
         buildingGamesText.isVisible = false
         distantMountains.isVisible = false
         cloudImage.isVisible = false
         display.setDefault("background", 0/255, 0/255, 0/255)
-        physics.stop()
 
     end
 
