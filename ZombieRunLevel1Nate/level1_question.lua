@@ -151,7 +151,7 @@ end
 
 local function DisplayQuestion()
     --creating random numbers
-    selectQuestion = math.random (1,5)
+    selectQuestion = math.random (1,20)
 
     if (selectQuestion == 1) then
 
@@ -223,6 +223,148 @@ local function DisplayQuestion()
         wrongText2.text = "Black"
 
         wrongText3.text = "Purple"
+
+    elseif (selectQuestion == 6) then 
+        -- create question 
+        questionText.text = "What kind of colour is black?"
+
+        -- creating answer text 
+        answerText.text = "A shade"
+
+        -- create wrong answers 
+        wrongText1.text = "Happy"
+
+        wrongText2.text = "Fun"
+
+        wrongText3.text = "Bright"
+
+    elseif (selectQuestion == 7) then 
+        -- create question 
+        questionText.text = "Which colour is a shade?"
+
+        -- creating answer text 
+        answerText.text = "Black"
+
+        -- create wrong answers 
+        wrongText1.text = "Yellow"
+
+        wrongText2.text = "Blue"
+
+        wrongText3.text = "Orange"
+
+
+    elseif (selectQuestion == 8) then 
+        -- create question 
+        questionText.text = "Which colour is the brightest?"
+
+        -- creating answer text 
+        answerText.text = "Yellow"
+
+        -- create wrong answers 
+        wrongText1.text = "Green"
+
+        wrongText2.text = "Orange"
+
+        wrongText3.text = "Red"
+
+    elseif (selectQuestion == 9) then 
+        -- create question 
+        questionText.text = "Which colour is not in the rainbow?"
+
+        -- creating answer text 
+        answerText.text = "Brown"
+
+        -- create wrong answers 
+        wrongText1.text = "Purple"
+
+        wrongText2.text = "Blue"
+
+        wrongText3.text = "Red"
+
+    elseif (selectQuestion == 10) then 
+        -- create question 
+        questionText.text = "How many colours are in the rainbow?"
+
+        -- creating answer text 
+        answerText.text = "Eight"
+
+        -- create wrong answers 
+        wrongText1.text = "Nine"
+
+        wrongText2.text = "Four"
+
+        wrongText3.text = "Eleven"
+
+    elseif (selectQuestion == 11) then 
+        -- create question 
+        questionText.text = "Which of the following are red?"
+
+        -- creating answer text 
+        answerText.text = "Stop sign"
+
+        -- create wrong answers 
+        wrongText1.text = "Clouds"
+
+        wrongText2.text = "Tiger"
+
+        wrongText3.text = "Bear"
+
+    elseif (selectQuestion == 12) then 
+        -- create question 
+        questionText.text = "Which of the following are white?"
+
+        -- creating answer text 
+        answerText.text = "Polar Bear"
+
+        -- create wrong answers 
+        wrongText1.text = "Grass"
+
+        wrongText2.text = "Gorilla"
+
+        wrongText3.text = "Car Tire"
+
+    elseif (selectQuestion == 13) then 
+        -- create question 
+        questionText.text = "Which of the following are orange?"
+
+        -- creating answer text 
+        answerText.text = "Carrot"
+
+        -- create wrong answers 
+        wrongText1.text = "Trees"
+
+        wrongText2.text = "Lion"
+
+        wrongText3.text = "Whale"
+
+    elseif (selectQuestion == 14) then 
+        -- create question 
+        questionText.text = "Which of the following are blue?"
+
+        -- creating answer text 
+        answerText.text = "Whale"
+
+        -- create wrong answers 
+        wrongText1.text = "Walrus"
+
+        wrongText2.text = "Killer Whale"
+
+        wrongText3.text = "Octopus"
+
+    elseif (selectQuestion == 15) then 
+        -- create question 
+        questionText.text = "Which of the following is not a shade?"
+
+        -- creating answer text 
+        answerText.text = "Dark Blue"
+
+        -- create wrong answers 
+        wrongText1.text = "White"
+
+        wrongText2.text = "Black"
+
+        wrongText3.text = "Grey"
+
     end
 end
 
