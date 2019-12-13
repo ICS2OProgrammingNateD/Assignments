@@ -365,6 +365,21 @@ local function DisplayQuestion()
 
         wrongText3.text = "Grey"
 
+    elseif (selectQuestion == 16) then 
+        -- create question 
+        questionText.text = "About how many colours can we see?"
+
+        -- creating answer text 
+        answerText.text = "10 million"
+
+        -- create wrong answers 
+        wrongText1.text = "10,000"
+
+        wrongText2.text = "100,000"
+
+        wrongText3.text = "1000"
+
+
     end
 end
 
