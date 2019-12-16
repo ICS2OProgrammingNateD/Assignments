@@ -297,7 +297,7 @@ local function DisplayQuestion()
 
     elseif (selectQuestion == 11) then 
         -- create question 
-        questionText.text = "Which of the following are red?"
+        questionText.text = "Which of the following is red?"
 
         -- creating answer text 
         answerText.text = "Stop sign"
@@ -311,7 +311,7 @@ local function DisplayQuestion()
 
     elseif (selectQuestion == 12) then 
         -- create question 
-        questionText.text = "Which of the following are white?"
+        questionText.text = "Which of the following is white?"
 
         -- creating answer text 
         answerText.text = "Polar Bear"
@@ -325,7 +325,7 @@ local function DisplayQuestion()
 
     elseif (selectQuestion == 13) then 
         -- create question 
-        questionText.text = "Which of the following are orange?"
+        questionText.text = "Which of the following is orange?"
 
         -- creating answer text 
         answerText.text = "Carrot"
@@ -339,7 +339,7 @@ local function DisplayQuestion()
 
     elseif (selectQuestion == 14) then 
         -- create question 
-        questionText.text = "Which of the following are blue?"
+        questionText.text = "Which of the following is blue?"
 
         -- creating answer text 
         answerText.text = "Whale"
@@ -378,6 +378,64 @@ local function DisplayQuestion()
         wrongText2.text = "100,000"
 
         wrongText3.text = "1000"
+
+    elseif (selectQuestion == 17) then 
+        -- create question 
+        questionText.text = "On the colour wheel which colour is the oppisite of red?"
+
+        -- creating answer text 
+        answerText.text = "Green"
+
+        -- create wrong answers 
+        wrongText1.text = "Blue"
+
+        wrongText2.text = "Orange"
+
+        wrongText3.text = "Purple"
+
+    elseif (selectQuestion == 18) then 
+        -- create question 
+        questionText.text = "On the colour wheel which colour is the oppisite of Orange?"
+
+        -- creating answer text 
+        answerText.text = "Blue"
+
+        -- create wrong answers 
+        wrongText1.text = "Brown"
+
+        wrongText2.text = "Pink"
+
+        wrongText3.text = "Red"
+
+
+    elseif (selectQuestion == 19) then 
+        -- create question 
+        questionText.text = "On the colour wheel which colour is the oppisite of Yellow?"
+
+        -- creating answer text 
+        answerText.text = "Purple"
+
+        -- create wrong answers 
+        wrongText1.text = "Green"
+
+        wrongText2.text = "Blue"
+
+        wrongText3.text = "Orange"
+
+
+    elseif (selectQuestion == 20) then 
+        -- create question 
+        questionText.text = "On the colour wheel which colour is the oppisite of Pink?"
+
+        -- creating answer text 
+        answerText.text = "Light Green"
+
+        -- create wrong answers 
+        wrongText1.text = "Purple"
+
+        wrongText2.text = "Red"
+
+        wrongText3.text = "Blue"
 
 
     end
