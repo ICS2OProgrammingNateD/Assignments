@@ -170,11 +170,11 @@ local function MoveZombie2(event)
 
     -- I got the base of this information from stackoverflow how to make multiple objects bounce around in Corona sdk
     -- this makes the image respond to hitting a wall
-    if (zombie2.x < 0) then 
+    if (zombie2.x < 170) then 
         zombie2.x = zombie2.x + 3 scrollSpeed2 = -scrollSpeed2
     end
 
-    if(zombie2.x > 250) then 
+    if(zombie2.x > 350) then 
         zombie2.x = zombie2.x - 3 scrollSpeed2 = -scrollSpeed2
     end
 end
@@ -514,8 +514,8 @@ function scene:create( event )
     bkg_image:toBack()    
     
     -- Insert the platforms
-    platform1 = display.newImageRect("Images//Level1PlatformHunter.png", 340, 50)
-    platform1.x = display.contentWidth * 1 / 8
+    platform1 = display.newImageRect("Images//Level1PlatformHunter.png", 200, 50)
+    platform1.x = display.contentWidth * 2 / 8
     platform1.y = display.contentHeight * 1.6 / 4
         
     sceneGroup:insert( platform1 )

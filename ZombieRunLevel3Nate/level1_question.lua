@@ -381,7 +381,7 @@ local function DisplayQuestion()
 
     elseif (selectQuestion == 17) then 
         -- create question 
-        questionText.text = "On the colour wheel which colour is the oppisite of red?"
+        questionText.text = "Which colour is the oppisite of red?"
 
         -- creating answer text 
         answerText.text = "Green"
@@ -395,7 +395,7 @@ local function DisplayQuestion()
 
     elseif (selectQuestion == 18) then 
         -- create question 
-        questionText.text = "On the colour wheel which colour is the oppisite of Orange?"
+        questionText.text = "Which colour is the oppisite of Orange?"
 
         -- creating answer text 
         answerText.text = "Blue"
@@ -410,7 +410,7 @@ local function DisplayQuestion()
 
     elseif (selectQuestion == 19) then 
         -- create question 
-        questionText.text = "On the colour wheel which colour is the oppisite of Yellow?"
+        questionText.text = "Which colour is the oppisite of Yellow?"
 
         -- creating answer text 
         answerText.text = "Purple"
@@ -425,7 +425,7 @@ local function DisplayQuestion()
 
     elseif (selectQuestion == 20) then 
         -- create question 
-        questionText.text = "On the colour wheel which colour is the oppisite of Pink?"
+        questionText.text = "Which colour is the oppisite of Pink?"
 
         -- creating answer text 
         answerText.text = "Light Green"
