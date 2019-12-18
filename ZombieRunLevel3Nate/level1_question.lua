@@ -159,7 +159,7 @@ local function DisplayQuestion()
         questionText.text = "What colour is the sun?"
 
         -- creating answer text 
-        answerText.text = "Red"
+        answerText.text = "Yellow"
 
         -- create wrong answers 
         wrongText1.text = "Orange"
@@ -286,7 +286,7 @@ local function DisplayQuestion()
         questionText.text = "How many colours are in the rainbow?"
 
         -- creating answer text 
-        answerText.text = "Eight"
+        answerText.text = "Seven"
 
         -- create wrong answers 
         wrongText1.text = "Nine"
@@ -370,7 +370,7 @@ local function DisplayQuestion()
         questionText.text = "About how many colours can we see?"
 
         -- creating answer text 
-        answerText.text = "10 million"
+        answerText.text = "7 million"
 
         -- create wrong answers 
         wrongText1.text = "10,000"

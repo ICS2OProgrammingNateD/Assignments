@@ -514,64 +514,64 @@ function scene:create( event )
     bkg_image:toBack()    
     
     -- Insert the platforms
-    platform1 = display.newImageRect("Images//Level1PlatformHunter.png", 340, 50)
+    platform1 = display.newImageRect("Images//Level3platformNate@2x.png", 340, 50)
     platform1.x = display.contentWidth * 1 / 8
     platform1.y = display.contentHeight * 1.6 / 4
         
     sceneGroup:insert( platform1 )
 
-    platform2 = display.newImageRect("Images//Level1PlatformHunter.png", 150, 50)
+    platform2 = display.newImageRect("Images//Level3platformNate@2x.png", 150, 50)
     platform2.x = display.contentWidth /2.1
     platform2.y = display.contentHeight * 1.2 / 4
         
     sceneGroup:insert( platform2 )
 
-    platform3 = display.newImageRect("Images//Level1PlatformHunter.png", 180, 50)
+    platform3 = display.newImageRect("Images//Level3platformNate@2x.png", 180, 50)
     platform3.x = display.contentWidth *1.8 / 5
     platform3.y = display.contentHeight * 3.12 / 5
         
     sceneGroup:insert( platform3 )
 
-    platform4 = display.newImageRect("Images//Level1PlatformHunter.png", 100, 50)
+    platform4 = display.newImageRect("Images//Level3platformNate@2x.png", 100, 50)
     platform4.x = display.contentWidth *4.7 / 5
     platform4.y = display.contentHeight * 1.3 / 5
         
     sceneGroup:insert( platform4 )
 
-    zombie1 = display.newImageRect("Images/Zombie@2x.png", 70, 150)
+    zombie1 = display.newImageRect("Images/skeletonNate@2x.png", 70, 150)
     zombie1.x = display.contentWidth * 3 / 8
     zombie1.y = display.contentHeight * 2.5 / 5
     zombie1.myName = "zombie1"
         
     sceneGroup:insert( zombie1)
 
-    zombie1platform = display.newImageRect("Images//Level1PlatformHunter.png", 30, 125)
+    zombie1platform = display.newImageRect("Images//Level3platformNate@2x.png", 30, 125)
     zombie1platform.x = display.contentWidth * 6.3 / 8
     zombie1platform.y = display.contentHeight * 0.37 / 5
         
     sceneGroup:insert( zombie1platform)
 
-    zombie2 = display.newImageRect("Images/Zombie@2x.png", 70, 150)
+    zombie2 = display.newImageRect("Images/skeletonNate@2x.png", 70, 150)
     zombie2.x = display.contentWidth * 2.18 / 8
     zombie2.y = display.contentHeight * 1.37 / 5
     zombie2.myName = "zombie2"
         
     sceneGroup:insert( zombie2)
 
-    zombie2platform = display.newImageRect("Images//Level1PlatformHunter.png", 150, 50)
+    zombie2platform = display.newImageRect("Images//Level3platformNate@2x.png", 150, 50)
     zombie2platform.x = display.contentWidth * 0.72 / 8
     zombie2platform.y = display.contentHeight * 3.63 / 5
         
     sceneGroup:insert( zombie2platform)
 
-    zombie3 = display.newImageRect("Images/Zombie@2x.png", 70, 150)
+    zombie3 = display.newImageRect("Images/skeletonNate@2x.png", 70, 150)
     zombie3.x = display.contentWidth * 7.3 / 8
     zombie3.y = display.contentHeight * 2.87 / 5
     zombie3.myName = "zombie3"
         
     sceneGroup:insert( zombie3)
 
-    zombie3platform = display.newImageRect("Images/Level1PlatformHunter.png", 150, 50)
+    zombie3platform = display.newImageRect("Images/Level3platformNate@2x.png", 150, 50)
     zombie3platform.x = display.contentWidth * 7.3 / 8
     zombie3platform.y = display.contentHeight * 3.5 / 5
         
