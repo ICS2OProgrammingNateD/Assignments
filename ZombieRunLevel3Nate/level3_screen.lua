@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------------------
 --
--- level1_screen.lua
+-- level3_screen.lua
 -- Created by: Nate Day
 -- Date: Nov. 19, 2019
 -- Description: This is the level 1 screen of the game.
@@ -14,7 +14,6 @@
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
-physics.start()
 
 
 -- Use Composer Libraries
@@ -27,7 +26,7 @@ local physics = require("physics")
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "level1_screen"
+sceneName = "level3_screen"
 
 -----------------------------------------------------------------------------------------
 
@@ -275,9 +274,9 @@ local function YouWinTransition()
     composer.gotoScene( "you_win" )
 end
 
-local function Level3Transition()
-    composer.gotoScene( "level3_screen" )
-end
+--local function Level4Transition()
+    --composer.gotoScene( "level4_screen" )
+--end
 
 local function onCollision( self, event )
     -- for testing purposes
@@ -343,7 +342,7 @@ local function onCollision( self, event )
             character.isVisible = false
 
             -- show overlay with math question
-            composer.showOverlay( "level1_question", { isModal = true, effect = "fade", time = 100})
+            composer.showOverlay( "level3_question", { isModal = true, effect = "fade", time = 100})
 
             -- Increment questions answered
             questionsAnswered = questionsAnswered + 1
@@ -366,7 +365,7 @@ end
 
 -- create a pause screen transition
 local function PauseScreenTransition()
-    composer.showOverlay( "level1_pause", { isModal = true, effect = "fade", time = 100})
+    composer.showOverlay( "level3_pause", { isModal = true, effect = "fade", time = 100})
 end   
 
 
@@ -457,7 +456,7 @@ end
 -- GLOBAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
-function ResumeGame()
+function ResumeGameLevel3()
 
     -- make character visible again
     character.isVisible = true
@@ -496,7 +495,7 @@ function scene:create( event )
             defaultFile = "Images/PauseButtonUnpressed.png",
             overFile = "Images/PauseButtonPressedHunter.png", 
 
-            -- When the button is released, call the Level1 screen transition function
+            -- When the button is released, call the Level3 screen transition function
             onRelease = PauseScreenTransition
             
         } )
@@ -709,9 +708,6 @@ function scene:show( event )
     -----------------------------------------------------------------------------------------
         -- start physics
         physics.start()
-
-        -- set gravity
-        physics.setGravity( 0, GRAVITY )
 
     elseif ( phase == "did" ) then
 

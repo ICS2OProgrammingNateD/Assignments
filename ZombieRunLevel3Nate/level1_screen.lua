@@ -14,7 +14,7 @@
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
-physics.start()
+
 
 
 -- Use Composer Libraries
@@ -710,8 +710,6 @@ function scene:show( event )
         -- start physics
         physics.start()
 
-        -- set gravity
-        physics.setGravity( 0, GRAVITY )
 
     elseif ( phase == "did" ) then
 
