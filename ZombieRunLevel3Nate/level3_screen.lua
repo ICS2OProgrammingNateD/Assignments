@@ -235,8 +235,8 @@ local function ReplaceCharacter()
     character = display.newImageRect("Images/Character1@2x.png", 60, 120)
     character.x = display.contentWidth * 0.5 / 8
     character.y = display.contentHeight  * 0.1 / 3
-    character.width = 40
-    character.height = 60
+    character.width = 80
+    character.height = 120
     character.myName = "Bob"
 
     -- intialize horizontal movement of character

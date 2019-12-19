@@ -353,17 +353,17 @@ local function DisplayQuestion()
 
     elseif (selectQuestion == 15) then 
         -- create question 
-        questionText.text = "Which of the following is not a shade?"
+        questionText.text = "Which of the following is not a colour?"
 
         -- creating answer text 
-        answerText.text = "Dark Blue"
+        answerText.text = "Black"
 
         -- create wrong answers 
-        wrongText1.text = "White"
+        wrongText1.text = "Blue"
 
-        wrongText2.text = "Black"
+        wrongText2.text = "Orange"
 
-        wrongText3.text = "Grey"
+        wrongText3.text = "Turquoise"
 
     elseif (selectQuestion == 16) then 
         -- create question 
