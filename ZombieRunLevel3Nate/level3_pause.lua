@@ -48,7 +48,7 @@ end
 -- Creating Transitioning Function back to level 1
 local function ResumeTransition( )
     composer.hideOverlay("fade", 300 )
-    ResumeGame()
+    ResumeGameLevel3()
 end
 
 -- Creating Transition Function to Credits Page
@@ -56,7 +56,7 @@ local function InstructionsTransition( )
     composer.gotoScene( "instructions_screen", {effect = "zoomOutInFade", time = 1000})
 end 
 
--- Creating Transition to Level1 Screen
+-- Creating Transition to Level3 Screen
 local function Level3ScreenTransition( )
     composer.gotoScene( "level3_screen", {effect = "fade", time = 2000})
 end    

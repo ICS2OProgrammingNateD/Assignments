@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------------------
 --
--- level1_screen.lua
+-- level3_screen.lua
 -- Created by: Nate
 -- Date: Nov 30, 2019
 -- Description: This is the level 1 screen of the game. the charater can be dragged to move
@@ -76,10 +76,10 @@ end
 
 
 --making transition to next scene
-local function BackToLevel1() 
+local function BackToLevel3() 
     composer.hideOverlay("crossFade", 400 )
   
-    ResumeGame()
+    ResumeGameLevel3()
 end 
 
 -----------------------------------------------------------------------------------------
@@ -91,7 +91,7 @@ local function TouchListenerAnswer(touch)
         sound1Channel = audio.play(sound1)
         correctObject.isVisible = true
         timer.performWithDelay(500, Hideincorrect)
-        timer.performWithDelay(500, BackToLevel1)
+        timer.performWithDelay(500, BackToLevel3)
     
     end 
 end
@@ -103,7 +103,7 @@ local function TouchListenerWrongAnswer(touch)
         sound2Channel = audio.play(sound2)
         incorrectObject.isVisible = true
         timer.performWithDelay(500, Hideincorrect)
-        timer.performWithDelay(500, BackToLevel1)
+        timer.performWithDelay(500, BackToLevel3)
         
         
     end 
@@ -116,7 +116,7 @@ local function TouchListenerWrongAnswer2(touch)
         sound2Channel = audio.play(sound2)
         incorrectObject.isVisible = true
         timer.performWithDelay(500, Hideincorrect)
-        timer.performWithDelay(500, BackToLevel1)
+        timer.performWithDelay(500, BackToLevel3)
         
     end 
 end
@@ -128,7 +128,7 @@ local function TouchListenerWrongAnswer3(touch)
         sound2Channel = audio.play(sound2)
         incorrectObject.isVisible = true
         timer.performWithDelay(500, Hideincorrect)
-        timer.performWithDelay(500, BackToLevel1)
+        timer.performWithDelay(500, BackToLevel3)
         
     end 
 end
@@ -610,7 +610,6 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-        --parent:resumeGame()
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then

@@ -392,6 +392,7 @@ local function AddCollisionListeners()
 end
 
 local function RemoveCollisionListeners()
+    print ("***Level1: Called RemoveCollisionListeners")
     zombie1:removeEventListener( "collision" )
     zombie2:removeEventListener( "collision" )
     zombie3:removeEventListener( "collision" )
@@ -433,6 +434,7 @@ local function AddPhysicsBodies()
 end
 
 local function RemovePhysicsBodies()
+    print ("***Level1: Called RemovePhysicsBodies")
     physics.removeBody(platform1)
     physics.removeBody(platform2)
     physics.removeBody(platform3)
@@ -759,15 +761,16 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-
-    -----------------------------------------------------------------------------------------
-
-    elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
         RemoveCollisionListeners()
         RemovePhysicsBodies()
 
-        physics.stop()
+    -----------------------------------------------------------------------------------------
+
+    elseif ( phase == "did" ) then
+        
+
+        --physics.stop()
         RemoveArrowEventListeners()
         RemoveRuntimeListeners()
         display.remove(character)
