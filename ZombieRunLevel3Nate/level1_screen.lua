@@ -70,7 +70,8 @@ local character
 
 local heart1
 local heart2
-local numLives = 2
+local heart3
+local numLives = 3
 
 local rArrow 
 local lArrow
@@ -81,8 +82,8 @@ local motionx = 0
 local _SPEED = -9
 local SPEED = 9
 
-local LINEAR_VELOCITY = -100
-local GRAVITY = 10
+local LINEAR_VELOCITY = -200
+local GRAVITY = 23
 
 local leftW 
 local rightW 
@@ -150,11 +151,11 @@ local function MoveZombie1(event)
 
     -- I got the base of this information from stackoverflow how to make multiple objects bounce around in Corona sdk
     -- this makes the image respond to hitting a wall
-    if (zombie1.x < 310) then 
+    if (zombie1.x < 480) then 
         zombie1.x = zombie1.x + 3 scrollSpeed3 = -scrollSpeed3
     end
 
-    if(zombie1.x > 450) then 
+    if(zombie1.x > 624) then 
         zombie1.x = zombie1.x - 3 scrollSpeed3 = -scrollSpeed3
     end
 end
@@ -265,6 +266,7 @@ end
 local function MakeHeartsVisible()
     heart1.isVisible = true
     heart2.isVisible = true
+    heart3.isVisible = true
 end
 
 local function YouLoseTransition()
@@ -311,16 +313,27 @@ local function onCollision( self, event )
             -- decrease number of lives
             numLives = numLives - 1
 
-            if (numLives == 1) then
+             if (numLives == 2) then
+                -- update hearts
+                heart1.isVisible = true
+                heart2.isVisible = true
+                heart3.isVisible = false
+
+                timer.performWithDelay(200, ReplaceCharacter) 
+
+            elseif (numLives == 1) then
                 -- update hearts
                 heart1.isVisible = true
                 heart2.isVisible = false
+                heart3.isVisible = false
+
                 timer.performWithDelay(200, ReplaceCharacter) 
 
             elseif (numLives == 0) then
                 -- update hearts
                 heart1.isVisible = false
                 heart2.isVisible = false
+                heart3.isVisible = false
                 audio.play(sound2)
                 timer.performWithDelay(200, YouLoseTransition)
             end
@@ -529,8 +542,8 @@ function scene:create( event )
     sceneGroup:insert( platform2 )
 
     platform3 = display.newImageRect("Images//Level1PlatformHunter.png", 180, 50)
-    platform3.x = display.contentWidth *1.8 / 5
-    platform3.y = display.contentHeight * 3.12 / 5
+    platform3.x = display.contentWidth *2.7 / 5
+    platform3.y = display.contentHeight * 3.0 / 5
         
     sceneGroup:insert( platform3 )
 
@@ -541,8 +554,8 @@ function scene:create( event )
     sceneGroup:insert( platform4 )
 
     zombie1 = display.newImageRect("Images/Zombie@2x.png", 70, 150)
-    zombie1.x = display.contentWidth * 3 / 8
-    zombie1.y = display.contentHeight * 2.5 / 5
+    zombie1.x = display.contentWidth * 3.9 / 8
+    zombie1.y = display.contentHeight * 2.38 / 5
     zombie1.myName = "zombie1"
         
     sceneGroup:insert( zombie1)
@@ -612,6 +625,15 @@ function scene:create( event )
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( heart2 )
+
+
+    heart3 = display.newImageRect("Images/HeartHunter@2x.png", 80, 80)
+    heart3.x = 210
+    heart3.y = 50
+    heart3.isVisible = true
+
+    -- Insert objects into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( heart3 )
 
     --Insert the right arrow
     rArrow = display.newImageRect("Images/RightArrowUnpressed@2x.png", 100, 50)
@@ -719,7 +741,7 @@ function scene:show( event )
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
 
-        numLives = 2
+        numLives = 3
         questionsAnswered = 0
 
         -- make all soccer key visible

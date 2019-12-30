@@ -54,7 +54,7 @@ local buildingGamesText
 
 -- The function that will go to the main menu 
 local function gotoMainMenu()
-    composer.gotoScene( "main_menu" )
+    composer.gotoScene( "main_menu", {effect = "fromTop", time = 100})
 end
 
 
@@ -70,14 +70,14 @@ end
 
 
 -- create text
-local function BuildingGames()
+--local function BuildingGames()
     -- add to physics
-    physics.addBody(distantMountains, "static", {friction = 0.5})
+    --physics.addBody(distantMountains, "static", {friction = 0.5})
     
     
     -- add to physics
-    physics.addBody(buildingGamesText, {density = .6, friction = 0.5, bounce = .580})
-end
+   -- physics.addBody(buildingGamesText, {density = .6, friction = 0.5, bounce = .580})
+--end
 
 
 
@@ -87,6 +87,7 @@ local function FadeText(event)
     
     -- change the transparency of the ship every time it moves so that it fades in
     buildingGamesText.alpha = buildingGamesText.alpha + 0.01
+    
 end
 
 -- Function: Moveship
@@ -99,7 +100,7 @@ local function MoveShip(event)
     companyLogo.y = companyLogo.y + scrollXSpeed
 -- change the transparency of the ship every time it moves so that it fades out
     companyLogo.alpha = companyLogo.alpha - 0.01
-    timer.performWithDelay( 1962, BuildingGames)
+    timer.performWithDelay( 1700, FadeText)
 
 end
 
@@ -144,8 +145,8 @@ function scene:create( event )
     -- make the background colour gradient
     paint = {
     type = "gradient",
-    color1 = { 0/255, 102/255, 204/255 },
-    color2 = { 153/255, 204/255, 255/255 },
+    color1 = { 0/255, 0/255, 0/255 },
+    color2 = { 193/255, 194/255, 192/255 },
     direction = "up"
     }
     
@@ -173,7 +174,7 @@ function scene:create( event )
     distantMountains.height = 200
 
     -- creating BuildingGames text 
-    buildingGamesText = display.newText("BUILDING GAMES", 512, 100, native.systemFontBold, 110)
+    buildingGamesText = display.newText("BUILDING GAMES", 512, 384, native.systemFontBold, 110)
     buildingGamesText.width = 1000
     buildingGamesText.height = 100
     buildingGamesText.alpha = 0
@@ -182,7 +183,7 @@ function scene:create( event )
     -- Sets the colour of the text to be gradient 
     gradient1 = {
     type = "gradient1", 
-    color1 = {153/255, 255/255, 255/255 }, color2 = {0/255, 51/255, 51/255}, direction = "down"
+    color1 = {255/255, 255/255, 205/255 }, color2 = {204/255, 204/255, 0/255}, direction = "down"
 }
 
     buildingGamesText:setFillColor(gradient1)
@@ -217,16 +218,16 @@ function scene:show( event )
         Runtime:addEventListener("enterFrame", _MoveShip)
 
         -- fade text will be called over and over again
-        Runtime:addEventListener("enterFrame", FadeText)
+        --Runtime:addEventListener("enterFrame", FadeText)
         -- start the splash screen music
       
         bkgMusicChannel = audio.play(bkgSound)
-        timer.performWithDelay(3600, BoomSound)
+        --timer.performWithDelay(3600, BoomSound)
 
         ImageSpin()
 
         -- Go to the main menu screen after the given time.
-        timer.performWithDelay ( 8000, gotoMainMenu)   
+        timer.performWithDelay ( 3750, gotoMainMenu)   
     end
 
 end --function scene:show( event )
@@ -262,7 +263,7 @@ function scene:hide( event )
         Runtime:removeEventListener("enterFrame", _MoveShip)
 
         -- fade text will be called over and over again
-        Runtime:removeEventListener("enterFrame", FadeText)
+        --Runtime:removeEventListener("enterFrame", FadeText)
 
         buildingGamesText.isVisible = false
         distantMountains.isVisible = false

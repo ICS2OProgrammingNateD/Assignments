@@ -156,126 +156,125 @@ local function DisplayQuestion()
     if (selectQuestion == 1) then
 
         -- create question 
-        questionText.text = "What colour is the sun?"
+        questionText.text = "What does your body need to grow?"
 
         -- creating answer text 
-        answerText.text = "Yellow"
+        answerText.text = "Nutrients"
 
         -- create wrong answers 
-        wrongText1.text = "Orange"
+        wrongText1.text = "Candy"
 
-        wrongText2.text = "Black"
+        wrongText2.text = "Video Games"
 
-        wrongText3.text = "Blue"
+        wrongText3.text = "Chips"
 
     elseif (selectQuestion == 2) then 
         -- create question 
-        questionText.text = "Which colour is a leaf not in fall?"
+        questionText.text = "Which of these is a fruit?"
 
         -- creating answer text 
-        answerText.text = "Blue"
+        answerText.text = "Orange"
 
         -- create wrong answers 
-        wrongText1.text = "Red"
+        wrongText1.text = "Potato"
 
-        wrongText2.text = "Yellow"
+        wrongText2.text = "Rice"
 
-        wrongText3.text = "Brown"
+        wrongText3.text = "Chicken"
 
     elseif (selectQuestion == 3) then 
         -- create question 
-        questionText.text = "What colour is healthy soil?"
+        questionText.text = "Which of these is a grain?"
 
         -- creating answer text 
-        answerText.text = "Brown"
+        answerText.text = "Bread"
 
         -- create wrong answers 
-        wrongText1.text = "Green"
+        wrongText1.text = "Tomato"
 
-        wrongText2.text = "Dark Red"
+        wrongText2.text = "Carrot"
 
-        wrongText3.text = "Light Green"
+        wrongText3.text = "Milk"
 
     elseif (selectQuestion == 4) then 
         -- create question 
-        questionText.text = "What colour is Mars?"
+        questionText.text = "Which of these is a vegetable?"
 
         -- creating answer text 
-        answerText.text = "Dark Red"
+        answerText.text = "Broccoli"
 
         -- create wrong answers 
-        wrongText1.text = "Green"
+        wrongText1.text = "Peanut"
 
-        wrongText2.text = "Light Red"
+        wrongText2.text = "Flour"
 
         wrongText3.text = "Orange"
 
     elseif (selectQuestion == 5) then 
         -- create question 
-        questionText.text = "What colour is Neptune?"
+        questionText.text = "How could get fit?"
 
         -- creating answer text 
-        answerText.text = "Blue"
+        answerText.text = "Exercise"
 
         -- create wrong answers 
-        wrongText1.text = "Red"
+        wrongText1.text = "Video Games"
 
-        wrongText2.text = "Black"
+        wrongText2.text = "Snacks"
 
-        wrongText3.text = "Purple"
+        wrongText3.text = "TV"
 
     elseif (selectQuestion == 6) then 
         -- create question 
-        questionText.text = "What kind of colour is black?"
+        questionText.text = "Which of these is not exercise?"
 
         -- creating answer text 
-        answerText.text = "A shade"
+        answerText.text = "Sleeping"
 
         -- create wrong answers 
-        wrongText1.text = "Happy"
+        wrongText1.text = "Basketball"
 
-        wrongText2.text = "Fun"
+        wrongText2.text = "Running"
 
-        wrongText3.text = "Bright"
+        wrongText3.text = "Swimming"
 
     elseif (selectQuestion == 7) then 
         -- create question 
-        questionText.text = "Which colour is a shade?"
+        questionText.text = "What is the longest bone in our body?"
 
         -- creating answer text 
-        answerText.text = "Black"
+        answerText.text = "Femur"
 
         -- create wrong answers 
-        wrongText1.text = "Yellow"
+        wrongText1.text = "Arm"
 
-        wrongText2.text = "Blue"
+        wrongText2.text = "Spine"
 
-        wrongText3.text = "Orange"
+        wrongText3.text = "Finger"
 
 
     elseif (selectQuestion == 8) then 
         -- create question 
-        questionText.text = "Which colour is the brightest?"
+        questionText.text = "What animal has a skeleton like yours?"
 
         -- creating answer text 
-        answerText.text = "Yellow"
+        answerText.text = "Chimpanzee"
 
         -- create wrong answers 
-        wrongText1.text = "Green"
+        wrongText1.text = "Cat"
 
-        wrongText2.text = "Orange"
+        wrongText2.text = "Bat"
 
-        wrongText3.text = "Red"
-
+        wrongText3.text = "Frog"
     elseif (selectQuestion == 9) then 
         -- create question 
-        questionText.text = "Which colour is not in the rainbow?"
+        questionText.text = "Which type of blood cells fight infection?"
 
         -- creating answer text 
-        answerText.text = "Brown"
+        answerText.text = "White"
 
         -- create wrong answers 
-        wrongText1.text = "Purple"
+        wrongText1.text = "Brown"
 
         wrongText2.text = "Blue"
 
@@ -283,159 +282,159 @@ local function DisplayQuestion()
 
     elseif (selectQuestion == 10) then 
         -- create question 
-        questionText.text = "How many colours are in the rainbow?"
+        questionText.text = "How many teeth do most adults have?"
 
         -- creating answer text 
-        answerText.text = "Seven"
+        answerText.text = "32"
 
         -- create wrong answers 
-        wrongText1.text = "Nine"
+        wrongText1.text = "24"
 
-        wrongText2.text = "Four"
+        wrongText2.text = "18"
 
-        wrongText3.text = "Eleven"
+        wrongText3.text = "46"
 
     elseif (selectQuestion == 11) then 
         -- create question 
-        questionText.text = "Which of the following is red?"
+        questionText.text = "What is the heaviest organ in your body?"
 
         -- creating answer text 
-        answerText.text = "Stop sign"
+        answerText.text = "Skin"
 
         -- create wrong answers 
-        wrongText1.text = "Clouds"
+        wrongText1.text = "Brain"
 
-        wrongText2.text = "Tiger"
+        wrongText2.text = "Liver"
 
-        wrongText3.text = "Bear"
+        wrongText3.text = "Kidney"
 
     elseif (selectQuestion == 12) then 
         -- create question 
-        questionText.text = "Which of the following is white?"
+        questionText.text = "How many bones are in a adult body?"
 
         -- creating answer text 
-        answerText.text = "Polar Bear"
+        answerText.text = "206"
 
         -- create wrong answers 
-        wrongText1.text = "Grass"
+        wrongText1.text = "200"
 
-        wrongText2.text = "Gorilla"
+        wrongText2.text = "158"
 
-        wrongText3.text = "Car Tire"
+        wrongText3.text = "243"
 
     elseif (selectQuestion == 13) then 
         -- create question 
-        questionText.text = "Which of the following is orange?"
+        questionText.text = "Where is the smallest bone in your body?"
 
         -- creating answer text 
-        answerText.text = "Carrot"
+        answerText.text = "Ear"
 
         -- create wrong answers 
-        wrongText1.text = "Trees"
+        wrongText1.text = "Foot"
 
-        wrongText2.text = "Lion"
+        wrongText2.text = "Mouth"
 
-        wrongText3.text = "Whale"
+        wrongText3.text = "Hand"
 
     elseif (selectQuestion == 14) then 
         -- create question 
-        questionText.text = "Which of the following is blue?"
+        questionText.text = "What does your heart do?"
 
         -- creating answer text 
-        answerText.text = "Whale"
+        answerText.text = "Pump blood"
 
         -- create wrong answers 
-        wrongText1.text = "Walrus"
+        wrongText1.text = "Think"
 
-        wrongText2.text = "Killer Whale"
+        wrongText2.text = "Breathe"
 
-        wrongText3.text = "Octopus"
+        wrongText3.text = "Hiccup"
 
     elseif (selectQuestion == 15) then 
         -- create question 
-        questionText.text = "Which of the following is not a colour?"
+        questionText.text = "Where are new blood cells made?"
 
         -- creating answer text 
-        answerText.text = "Black"
+        answerText.text = "Bones"
 
         -- create wrong answers 
-        wrongText1.text = "Blue"
+        wrongText1.text = "Heart"
 
-        wrongText2.text = "Orange"
+        wrongText2.text = "Brain"
 
-        wrongText3.text = "Turquoise"
+        wrongText3.text = "Liver"
 
     elseif (selectQuestion == 16) then 
         -- create question 
-        questionText.text = "About how many colours can we see?"
+        questionText.text = "Which muscle is the strongest?"
 
         -- creating answer text 
-        answerText.text = "7 million"
+        answerText.text = "Jaw"
 
         -- create wrong answers 
-        wrongText1.text = "10,000"
+        wrongText1.text = "Arm"
 
-        wrongText2.text = "100,000"
+        wrongText2.text = "Leg"
 
-        wrongText3.text = "1000"
+        wrongText3.text = "Back"
 
     elseif (selectQuestion == 17) then 
         -- create question 
-        questionText.text = "Which colour is the opposite of red?"
+        questionText.text = "Which helps you keep your balance?"
 
         -- creating answer text 
-        answerText.text = "Green"
+        answerText.text = "Ear"
 
         -- create wrong answers 
-        wrongText1.text = "Blue"
+        wrongText1.text = "Hair"
 
-        wrongText2.text = "Orange"
+        wrongText2.text = "Hands"
 
-        wrongText3.text = "Purple"
+        wrongText3.text = "Heart"
 
     elseif (selectQuestion == 18) then 
         -- create question 
-        questionText.text = "Which colour is the opposite of Orange?"
+        questionText.text = "How many senses are there?"
 
         -- creating answer text 
-        answerText.text = "Blue"
+        answerText.text = "5"
 
         -- create wrong answers 
-        wrongText1.text = "Brown"
+        wrongText1.text = "3"
 
-        wrongText2.text = "Pink"
+        wrongText2.text = "4"
 
-        wrongText3.text = "Red"
+        wrongText3.text = "6"
 
 
     elseif (selectQuestion == 19) then 
         -- create question 
-        questionText.text = "Which colour is the opposite of Yellow?"
+        questionText.text = "How many lungs does the body have?"
 
         -- creating answer text 
-        answerText.text = "Purple"
+        answerText.text = "Two"
 
         -- create wrong answers 
-        wrongText1.text = "Green"
+        wrongText1.text = "Three"
 
-        wrongText2.text = "Blue"
+        wrongText2.text = "One"
 
-        wrongText3.text = "Orange"
+        wrongText3.text = "Four"
 
 
     elseif (selectQuestion == 20) then 
         -- create question 
-        questionText.text = "Which colour is the opposite of Pink?"
+        questionText.text = "What allows your tongue to taste?"
 
         -- creating answer text 
-        answerText.text = "Light Green"
+        answerText.text = "Taste buds"
 
         -- create wrong answers 
-        wrongText1.text = "Purple"
+        wrongText1.text = "Taste roots"
 
-        wrongText2.text = "Red"
+        wrongText2.text = "Dimples"
 
-        wrongText3.text = "Blue"
+        wrongText3.text = "Pimples"
 
 
     end
@@ -532,16 +531,16 @@ function scene:create( event )
     cover:setFillColor(0/255, 25/255, 52/255)
 
     -- create the question text object
-    questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 50)
+    questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
 
     -- create the answer text object & wrong answer text objects
-    answerText = display.newText("", X1, Y2, Arial, 50)
+    answerText = display.newText("", X1, Y2, Arial, 40)
     answerText.anchorX = 0
-    wrongText1 = display.newText("", X2, Y2, Arial, 50)
+    wrongText1 = display.newText("", X2, Y2, Arial, 40)
     wrongText1.anchorX = 0
-    wrongText2 = display.newText("", X1, Y1, Arial, 50)
+    wrongText2 = display.newText("", X1, Y1, Arial, 40)
     wrongText2.anchorX = 0
-    wrongText3 = display.newText("", X2, Y1, Arial, 50)
+    wrongText3 = display.newText("", X2, Y1, Arial, 40)
     wrongText3.anchorX = 0
 
 

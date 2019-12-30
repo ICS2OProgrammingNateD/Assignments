@@ -170,7 +170,7 @@ local function DisplayQuestion()
 
     elseif (selectQuestion == 2) then 
         -- create question 
-        questionText.text = "Which colour is a leaf not in fall?"
+        questionText.text = "Leaves in fall are not...?"
 
         -- creating answer text 
         answerText.text = "Blue"
@@ -532,16 +532,16 @@ function scene:create( event )
     cover:setFillColor(0/255, 25/255, 52/255)
 
     -- create the question text object
-    questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 50)
+    questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
 
     -- create the answer text object & wrong answer text objects
-    answerText = display.newText("", X1, Y2, Arial, 50)
+    answerText = display.newText("", X1, Y2, Arial, 40)
     answerText.anchorX = 0
-    wrongText1 = display.newText("", X2, Y2, Arial, 50)
+    wrongText1 = display.newText("", X2, Y2, Arial, 40)
     wrongText1.anchorX = 0
-    wrongText2 = display.newText("", X1, Y1, Arial, 50)
+    wrongText2 = display.newText("", X1, Y1, Arial, 40)
     wrongText2.anchorX = 0
-    wrongText3 = display.newText("", X2, Y1, Arial, 50)
+    wrongText3 = display.newText("", X2, Y1, Arial, 40)
     wrongText3.anchorX = 0
 
 
