@@ -46,6 +46,8 @@ local sound1 = audio.loadSound("Sounds/YouWinSound.wav")
 local sound2 = audio.loadSound("Sounds/YouLoseSound.wav")
 local sound3 = audio.loadSound("Sounds/zombiesound.wav")
 local sound4 = audio.loadSound("Sounds/keysound.wav")
+local sound5 = audio.loadSound("Sounds/Bubbles.wav")
+
 
 
 local bkg_image
@@ -59,6 +61,10 @@ local zombie1
 local zombie2
 local zombie3
 local zombie4
+
+local bubbles1
+local bubbles2
+local bubbles3
 
 --local zombie1platform
 local zombie2platform
@@ -106,6 +112,8 @@ local scrollSpeed2 = 0.6
 local scrollSpeed3 = 2
 local scrollSpeed4 = 2
 local scrollSpeed5 = 4
+
+local scrollSpeedY = 2
 
 
 -----------------------------------------------------------------------------------------
@@ -165,8 +173,54 @@ local function MoveShark(event)
 
     if(shark.x > 1200) then 
         --shark.isVisible = false
-        ReplaceShark()
+       timer.performWithDelay(20000, ReplaceShark) 
     end
+end
+
+-- make a function that fades in building GAMES
+local function FadeBubbles(event)
+    
+    -- change the transparency of the ship every time it moves so that it fades in
+    bubbles1.alpha = bubbles1.alpha + 0.01
+    bubbles2.alpha = bubbles2.alpha + 0.01
+    bubbles3.alpha = bubbles3.alpha + 0.01
+    audio.play(sound5)    
+end
+
+-- Function: Moveship
+-- Input: this function accepts an event listener
+-- Output: None
+-- Description: This function adds the scroll speed to the x-value of the ship
+local function MoveBubbles1(event)
+    -- add the scroll speed to the x-value of the ship
+    bubbles1.y = bubbles1.y - scrollSpeedY
+    -- change the transparency of the ship every time it moves so that it fades out
+    bubbles1.alpha = bubbles1.alpha - 0.01
+    timer.performWithDelay( 1700, FadeBubbles)
+end
+
+-- Function: Moveship
+-- Input: this function accepts an event listener
+-- Output: None
+-- Description: This function adds the scroll speed to the x-value of the ship
+local function MoveBubbles2(event)
+    -- add the scroll speed to the x-value of the ship
+    bubbles2.y = bubbles2.y - scrollSpeedY
+    -- change the transparency of the ship every time it moves so that it fades out
+    bubbles2.alpha = bubbles2.alpha - 0.01
+    timer.performWithDelay( 1700, FadeBubbles)
+end
+
+-- Function: Moveship
+-- Input: this function accepts an event listener
+-- Output: None
+-- Description: This function adds the scroll speed to the x-value of the ship
+local function MoveBubbles3(event)
+    -- add the scroll speed to the x-value of the ship
+    bubbles3.y = bubbles3.y - scrollSpeedY
+    -- change the transparency of the ship every time it moves so that it fades out
+    bubbles3.alpha = bubbles3.alpha - 0.01
+    timer.performWithDelay( 1700, FadeBubbles)
 end
 
 
@@ -273,20 +327,26 @@ end
 local function AddRuntimeListeners()
     Runtime:addEventListener("enterFrame", movePlayer)
     Runtime:addEventListener("touch", stop )
-    --Runtime:addEventListener("enterFrame", MoveShark)
+    Runtime:addEventListener("enterFrame", MoveShark)
+    Runtime:addEventListener("enterFrame", MoveBubbles1)
+    Runtime:addEventListener("enterFrame", MoveBubbles2)
+    Runtime:addEventListener("enterFrame", MoveBubbles3)
 end
 
 local function RemoveRuntimeListeners()
     Runtime:removeEventListener("enterFrame", movePlayer)
     Runtime:removeEventListener("touch", stop )
-    --Runtime:removeEventListener("enterFrame", MoveShark)
+    Runtime:removeEventListener("enterFrame", MoveShark)
+    Runtime:removeEventListener("enterFrame", MoveBubbles1)
+    Runtime:removeEventListener("enterFrame", MoveBubbles2)
+    Runtime:removeEventListener("enterFrame", MoveBubbles3)
 end
 
 
 local function ReplaceCharacter()
     character = display.newImageRect("Images/Character1@2x.png", 60, 120)
     character.x = display.contentWidth * 7.4 / 8
-    character.y = display.contentHeight  * 2.4/ 3
+    character.y = display.contentHeight  * 0.2/ 3
     character.width = 80
     character.height = 120
     character.myName = "Bob"
@@ -367,7 +427,7 @@ local function onCollision( self, event )
                 heart1.isVisible = true
                 heart2.isVisible = true
                 heart3.isVisible = false
-
+                ReplaceShark()
                 timer.performWithDelay(200, ReplaceCharacter) 
 
 
@@ -376,6 +436,7 @@ local function onCollision( self, event )
                 heart1.isVisible = true
                 heart2.isVisible = false
                 heart3.isVisible = false
+                ReplaceShark()
 
                 timer.performWithDelay(200, ReplaceCharacter) 
 
@@ -384,6 +445,8 @@ local function onCollision( self, event )
                 heart1.isVisible = false
                 heart2.isVisible = false
                 heart3.isVisible = false
+                ReplaceShark()
+
                 audio.play(sound2)
                 timer.performWithDelay(200, YouLoseTransition)
             end
@@ -654,7 +717,7 @@ function scene:create( event )
 
     zombie4 = display.newImageRect("Images/skeletonNate@2x.png", 70, 150)
     zombie4.x = display.contentWidth * 0.5 / 8
-    zombie4.y = display.contentHeight * 0.5 / 5
+    zombie4.y = display.contentHeight * -1 / 5
     zombie4.myName = "zombie4"
         
     sceneGroup:insert( zombie4)
@@ -662,7 +725,7 @@ function scene:create( event )
     -- Insert the portal
     portal = display.newImageRect("Images/PortalNate@2x.png", 170, 170)
     portal.x = display.contentWidth *4.6 / 5
-    portal.y = display.contentHeight * 0.6 / 5
+    portal.y = display.contentHeight * 4.3 / 5
     portal.myName = "portal"
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
@@ -781,6 +844,32 @@ function scene:create( event )
     
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( shark )
+
+    --bubbles
+    bubbles1 = display.newImageRect ("Images/BubblesNate@2x.png", 30, 70)
+    bubbles1.x = 550
+    bubbles1.y = 50
+    bubbles1.myName = "bubbles1"
+
+    -- Insert objects into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( bubbles1 )
+
+    --bubbles
+    bubbles2 = display.newImageRect ("Images/BubblesNate@2x.png", 30, 70)
+    bubbles2.x = 650
+    bubbles2.y = 270
+    bubbles2.myName = "bubbles2"
+    -- Insert objects into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( bubbles2 )
+
+    --bubbles
+    bubbles3 = display.newImageRect ("Images/BubblesNate@2x.png", 30, 70)
+    bubbles3.x = 600
+    bubbles3.y = 650
+    bubbles3.myName = "bubbles3"
+
+    -- Insert objects into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( bubbles3 )
 end --function scene:create( event )
 
 -----------------------------------------------------------------------------------------
