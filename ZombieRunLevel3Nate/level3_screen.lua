@@ -186,7 +186,7 @@ local function FadeBubbles(event)
     
     -- change the transparency of the ship every time it moves so that it fades in
     bubbles1.alpha = bubbles1.alpha + 0.01
-    bubbles2.alpha = bubbles2.alpha + 0.01
+   -- bubbles2.alpha = bubbles2.alpha + 0.01
    -- bubbles3.alpha = bubbles3.alpha + 0.01    
 end
 
@@ -211,7 +211,7 @@ local function MoveBubbles2(event)
     -- add the scroll speed to the x-value of the ship
     bubbles2.y = bubbles2.y - scrollSpeedY
     -- change the transparency of the ship every time it moves so that it fades out
-    bubbles2.alpha = bubbles2.alpha - 0.01
+    bubbles2.alpha = bubbles2.alpha - 0.005
     timer.performWithDelay( 1700, FadeBubbles)
 end
 
@@ -223,7 +223,7 @@ local function MoveBubbles3(event)
     -- add the scroll speed to the x-value of the ship
     bubbles3.y = bubbles3.y - scrollSpeedY
     -- change the transparency of the ship every time it moves so that it fades out
-    bubbles3.alpha = bubbles3.alpha - 0.01
+    bubbles3.alpha = bubbles3.alpha - 0.00001
     timer.performWithDelay( 1700, FadeBubbles)
 end
 
@@ -851,7 +851,7 @@ function scene:create( event )
 
     --bubbles
     bubbles1 = display.newImageRect ("Images/BubblesNate@2x.png", 30, 70)
-    bubbles1.x = 550
+    bubbles1.x = 500
     bubbles1.y = 50
     bubbles1.myName = "bubbles1"
 
@@ -868,7 +868,7 @@ function scene:create( event )
 
     --bubbles
     bubbles3 = display.newImageRect ("Images/BubblesNate@2x.png", 30, 70)
-    bubbles3.x = 600
+    bubbles3.x = 350
     bubbles3.y = 650
     bubbles3.myName = "bubbles3"
 
