@@ -89,7 +89,7 @@ local motionx = 0
 local _SPEED = -9
 local SPEED = 9
 
-local LINEAR_VELOCITY = -200
+local LINEAR_VELOCITY = -250
 local GRAVITY = 10
 
 local leftW 
@@ -177,14 +177,17 @@ local function MoveShark(event)
     end
 end
 
+local function BubblesSound()
+    audio.play(sound5)
+end
+
 -- make a function that fades in building GAMES
 local function FadeBubbles(event)
     
     -- change the transparency of the ship every time it moves so that it fades in
     bubbles1.alpha = bubbles1.alpha + 0.01
     bubbles2.alpha = bubbles2.alpha + 0.01
-    bubbles3.alpha = bubbles3.alpha + 0.01
-    audio.play(sound5)    
+   -- bubbles3.alpha = bubbles3.alpha + 0.01    
 end
 
 -- Function: Moveship
@@ -198,6 +201,7 @@ local function MoveBubbles1(event)
     bubbles1.alpha = bubbles1.alpha - 0.01
     timer.performWithDelay( 1700, FadeBubbles)
 end
+
 
 -- Function: Moveship
 -- Input: this function accepts an event listener
@@ -915,6 +919,8 @@ function scene:show( event )
         ReplaceCharacter()
 
         ReplaceShark()
+
+        BubblesSound()
 
         Runtime:addEventListener("enterFrame", MoveZombie1)
         Runtime:addEventListener("enterFrame", MoveZombie2)
